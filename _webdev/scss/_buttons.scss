@@ -65,6 +65,14 @@ fieldset:disabled a.btn {
   }
 }
 
+.btn-primary-accent {
+  @include hover {
+    color: color-yiq($accent);
+    @include gradient-bg($accent);
+    border-color: $accent;
+  }
+}
+
 @each $color, $value in $theme-colors {
   .btn-outline-#{$color} {
     @include button-outline-variant($value);

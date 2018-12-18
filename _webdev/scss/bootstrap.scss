@@ -40,3 +40,64 @@
 @import "carousel";
 @import "utilities";
 @import "print";
+
+/*!
+ * UPB-CSC Theme Edition
+ *
+ */
+
+.btn-round-border {
+  border-radius: 0.4rem;
+}
+
+.lower-thirds {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.csc-date-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 40px;
+  background-color: $primary;
+  margin: 10px auto;
+
+  &.csc-date-circle-big {
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+  }
+}
+
+.csc-date-prewrap {
+  width: 100px;
+
+  &::before {
+    content: ' ';
+    position: absolute;
+    background-color: $primary;
+    width: 10px;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    margin-left: -5px;
+    z-index: -1;
+  }
+
+  .csc-date-rows .row:last-child &::before {
+    content: none;
+  }
+}
+
+.csc-date-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
