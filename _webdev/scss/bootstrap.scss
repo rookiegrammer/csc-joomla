@@ -55,10 +55,20 @@
   bottom: 0;
   left: 0;
   right: 0;
+  font-weight: bold;
+  font-size: 0.8em;
 }
 
 .overflow-hidden {
-  overflow: hidden;
+  overflow: hidden !important;
+}
+
+.sans-serif {
+  font-family: $font-family-sans-serif !important;
+}
+
+.serif {
+  font-family: $font-family-base !important;
 }
 
 .csc-date-circle {
@@ -67,6 +77,10 @@
   border-radius: 40px;
   background-color: $primary;
   margin: 10px auto;
+
+  font-family: $font-family-sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
 
   &.csc-date-circle-big {
     width: 100px;
@@ -100,4 +114,40 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.csc-date-day {
+  font-size: 2em;
+}
+
+.btn-feature {
+  display: block;
+  width: auto;
+  text-align: center;
+  padding: 0;
+  @extend .btn-secondary, .btn-round-border;
+  position: relative;
+  overflow: hidden;
+  min-height: 120px;
+
+  background-image: url(../img/placeholder.jpg); // **
+  background-size: cover;
+  background-position: center;
+
+  .lower-thirds {
+    background-color: $primary;
+    @include transition($btn-transition);
+  }
+
+  &:hover .lower-thirds {
+    background-color: $accent;
+  }
+}
+
+#csc-slides {
+  background-color: $secondary;
+
+  .carousel-item {
+    height: 300px;
+  }
 }
