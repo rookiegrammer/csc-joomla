@@ -39,7 +39,8 @@
 </style>
 <head>
   <meta charset="utf-8">
-  <title></title>
+  <title>Home - Cordillera Studies Center</title>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700|Open+Sans:400,800" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -49,44 +50,68 @@
   <script src="js/bootstrap.min.js"></script>
 </head>
 <body>
-  <header>
+  <header class="background-secondary">
     <div class= "banner" style="padding:0.1px;padding-top:4px;text-align:right;background:#1e640a;color:#f2f8f0;font-size:18px;font-family:'Open Sans',sans-serif;">
 			<ul>
 			<li style="display:inline; margin-right:80px;">Latest Publication: <a href="#" style="color:#d1d3d1"><b><em>History of the CSC.</em></b></a></li>
 			For inquiries:<i class="material-icons">local_phone</i>
 			(000)-0000-1234
 		</div>
-    <nav class="navbar navbar-light">
-			<div class="container">
-	      <div class="d-flex flex-row my-3 w-100">
+    <nav class="navbar navbar-light p-0">
+			<div class="container mt-4">
+	      <div class="d-flex flex-row w-100">
 	        <div class="mr-3">
-						<img src="img/newlogo.png">
+						<img src="img/logo.svg" height="90">
 	        </div>
 	        <div class="d-flex flex-column flex-fill">
-	          <h1 class="font-weight-bold">
-	            <a class="navbar-brand" href="#" style="color:#710000;font-size: 2rem;">
-	              The Cordillera Studies Center
+	          <h1 class="font-weight-bold m-0">
+	            <a class="navbar-brand serif pb-0" href="#" style="color:#710000;font-size: 2rem;">
+	              Cordillera Studies Center
 	            </a>
 	          </h1>
-	          <p>University of the Philippines Baguio</p>
-						<ul class="nav font-weight-bold sans-serif text-uppercase float-right justify-content-end">
+	          <span class="font-weight-bold" style="font-size: 1rem;">University of the Philippines Baguio</span>
+						<ul class="nav font-weight-bold sans-serif text-uppercase float-right justify-content-end pt-3">
 			        <li class="nav-item">
-			          <a class="nav-link active" href="#">Home</a>
+			          <a class="nav-link active" href="#">
+									<span class="nav-bars">
+										Home
+									</span>
+								</a>
 			        </li>
 			        <li class="nav-item">
-			          <a class="nav-link" href="#">About</a>
+			          <a class="nav-link" href="#">
+									<span class="nav-bars">
+										About
+									</span>
+								</a>
 			        </li>
 							<li class="nav-item">
-			          <a class="nav-link" href="#">Research</a>
+			          <a class="nav-link" href="#">
+									<span class="nav-bars">
+										Research
+									</span>
+								</a>
 			        </li>
 							<li class="nav-item">
-			          <a class="nav-link" href="#">Affiliates</a>
+			          <a class="nav-link" href="#">
+									<span class="nav-bars">
+											Affiliates
+									</span>
+								</a>
 			        </li>
 			        <li class="nav-item">
-			          <a class="nav-link" href="#">Publications</a>
+			          <a class="nav-link" href="#">
+									<span class="nav-bars">
+											Publications
+									</span>
+								</a>
 			        </li>
 			        <li class="nav-item">
-			          <a class="nav-link disabled" href="#">Contact</a>
+			          <a class="nav-link disabled" href="#">
+									<span class="nav-bars">
+										Contact
+									</span>
+								</a>
 			        </li>
 			      </ul>
 	        </div>
@@ -96,21 +121,63 @@
 		</nav>
 
   </header>
-  <div id="csc-slides" class="carousel slide" data-ride="carousel">
+  <div id="csc-slides" class="carousel slide text-white text-center" data-ride="carousel">
     <ol class="carousel-indicators">
       <li data-target="#csc-slides" data-slide-to="0" class="active"></li>
       <li data-target="#csc-slides" data-slide-to="1"></li>
       <li data-target="#csc-slides" data-slide-to="2"></li>
     </ol>
+		<h3 class="sr-only">
+			Updates
+		</h3>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img class="d-block h-100 m-auto" src="img/placeholder.jpg" alt="First slide">
+				<img class="d-block h-100 m-auto" src="img/placeholder.jpg" alt="First slide">
+				<div class="carousel-text-block">
+					<div class="carousel-text-wrap">
+						<div class="carousel-text-overlay">
+						</div>
+						<div class="carousel-text-title pt-5 pb-3">
+							<h5 class="container mb-0">
+								Lorem ipsum dolor
+							</h5>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas mauris ligula, lobortis sit amet libero eget.
+							</p>
+						</div>
+					</div>
+				</div>
       </div>
       <div class="carousel-item">
         <img class="d-block h-100 m-auto" src="img/placeholder.jpg" alt="Second slide">
+				<div class="carousel-text-block">
+					<div class="carousel-text-wrap">
+						<div class="carousel-text-overlay">
+						</div>
+						<div class="carousel-text-title pt-5 pb-3">
+							<h5 class="container mb-0">
+								Sit Amet
+							</h5>
+						</div>
+					</div>
+				</div>
       </div>
       <div class="carousel-item">
         <img class="d-block h-100 m-auto" src="img/placeholder.jpg" alt="Third slide">
+				<div class="carousel-text-block">
+					<div class="carousel-text-wrap">
+						<div class="carousel-text-overlay">
+						</div>
+						<div class="carousel-text-title pt-5 pb-3">
+							<h5 class="container mb-0">
+								Purus metus
+							</h5>
+							<p>
+								Proin nec purus metus. Integer volutpat at libero in hendrerit.
+							</p>
+						</div>
+					</div>
+				</div>
       </div>
     </div>
     <a class="carousel-control-prev" href="#csc-slides" role="button" data-slide="prev">
@@ -123,162 +190,9 @@
     </a>
   </div>
 	<div class="py-5">
-    <div class="container">
-      <div class="row my-4">
-        <div class="col-4">
-          <a class="d-block w-auto text-center p-3 btn btn-primary btn-round-border btn-primary-accent" href="#">
-            Research Activities
-          </a>
-        </div>
-        <div class="col-4">
-          <a class="d-block w-auto text-center p-3 btn btn-primary btn-round-border btn-primary-accent" href="#">
-						Research Affiliation Program
-          </a>
-        </div>
-        <div class="col-4">
-          <a class="d-block w-auto text-center p-3 btn btn-primary btn-round-border btn-primary-accent" href="#">
-						Other Program &amp; Services
-          </a>
-        </div>
-      </div>
-    </div>
-		<div class="container my-5">
-      <h3 class="text-center mb-3">News &amp; Announcements</h3>
-      <div class="row">
-        <div class="col-3">
-          <a class="btn btn-feature">
-            <h5 class="lower-thirds m-0 text-white p-2">
-              Happy Holidays!
-            </h5>
-          </a>
-        </div>
-        <div class="col-3">
-          <a class="btn btn-feature">
-            <h5 class="lower-thirds m-0 text-white p-2">
-              Happy Holidays!
-            </h5>
-          </a>
-        </div>
-        <div class="col-3">
-          <a class="btn btn-feature">
-            <h5 class="lower-thirds m-0 text-white p-2">
-              CSC will resume work.
-            </h5>
-          </a>
-        </div>
-        <div class="col-3">
-          <a class="btn btn-feature">
-            <h5 class="lower-thirds m-0 text-white p-2">
-              Lorem Ipsum
-            </h5>
-          </a>
-        </div>
-      </div>
-    </div>
-		<div class="container my-5">
-      <div class="row my-4">
-        <div class="col-4">
-          <h3>Upcoming</h3>
-          <div class="csc-date-rows">
-            <a class="row csc-date-event" href="#">
-              <div class="csc-date-prewrap position-relative">
-                <div class="csc-date-circle csc-date-circle-big position-relative">
-                  <div class="csc-date-text text-white text-center">
-                    <div class="csc-date-day">31</div>
-                    <div class="csc-date-month">Dec</div>
-                  </div>
-                </div>
-              </div>
-              <div class="pl-3 pt-2">
-                <h5>
-									Rizal Day
-								</h5>
-              </div>
-            </a>
-            <a class="row csc-date-event" href="#">
-              <div class="csc-date-prewrap position-relative">
-                <div class="csc-date-circle position-relative">
-                  <div class="csc-date-text text-white text-center">
-                    <div class="csc-date-day">01</div>
-                  </div>
-                </div>
-              </div>
-              <div class="pl-3 pt-2">
-								<h5>
-									New Year
-								</h5>
-
-              </div>
-            </a>
-            <a class="row csc-date-event" href="#">
-              <div class="csc-date-prewrap position-relative">
-                <div class="csc-date-circle position-relative">
-                  <div class="csc-date-text text-white text-center">
-                    <div class="csc-date-day">06</div>
-                  </div>
-                </div>
-              </div>
-              <div class="pl-3 pt-2">
-                <h5>
-									Continuation of Services
-								</h5>
-              </div>
-            </a>
-          </div>
-        </div>
-        <div class="col-8">
-          <h3>The CSC Staff</h3><br>
-		  			<p><em> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas mauris ligula, lobortis sit amet libero eget, accumsan malesuada lectus. Suspendisse potenti. Proin nec purus metus. Integer volutpat at libero in hendrerit. Cras vulputate lorem vel pellentesque tincidunt. Nam pellentesque nunc vel semper dignissim. Duis nulla est, aliquet non tellus a, lacinia dapibus dui. </em></p>
-          <div>
-
-          </div>
-        </div>
-      </div>
-      <div>
-        <h3 style="text-align:center;">Publications</h3>
-        <div class="row">
-          <div class="col-4">
-            <div class="pubs">
-              <div class="pubs1">
-					<h3> Research Reports</h3>
-						<a href="#"><img class="image" src="img/news.jpeg"></a>
-					<p> This section contains the reports of the CSC researches.</p>
-			  </div>
-            </div>
-            <div class="pubs">
-              <div class="pubs1">
-					<h3> The Cordillera Review</h3>
-					<a href="#"><img class="image" src="img/pap.png" style="border:2px solid #656665;"></a>
-					<p> This section contains the Cordilleran reviews. </p>
-			  </div>
-            </div>
-			<div class="pubs">
-              <div class="pubs1">
-					<h3> Conference Proceedings</h3>
-					<a href="#"><img class="image" src="img/audience.png" style="border:2px solid #656665;"></a>
-					<p> This section contains the records and marks of held conferences. </p>
-			  </div>
-            </div>
-			<div class="pubs">
-              <div class="pubs1">
-					<h3> Special Publications</h3>
-					<a href="#"><img class="image" src="img/pile.jpg" style="border:2px solid #656665;"></a>
-					<p> This section contains the special publications. </p>
-			  </div>
-            </div>
-          </div>
-          <!-- <div class="col-8">
-            <div class="row">
-              <h5>Title</h5>
-            </div>
-          </div> -->
-        </div>
-      </div>
-
-    </div>
 		<div class="my-5">
-			<h3 class="text-center">About the Cordillera Studies Center</h3>
-	    <div class="bg-primary my-4" style="background-image: url(img/image1.jpg); background-size: cover; background-position: fixed; background-blend-mode: screen;">
+			<h3 class="text-center text-primary" style="font-size: 1.8rem">Welcome to the Cordillera Studies Center</h3>
+	    <div class="bg-primary my-4" style="background-image: url(img/image1.jpg); background-size: cover; background-position: fixed; background-blend-mode: multiply;">
 				<div style="">
 	      	<div class="container">
 		        <div class="row">
@@ -295,35 +209,215 @@
 				</div>
 			</div>
 		</div>
-	</div>
-  <footer class="sans-serif text-white p-5" style="background-color: #191919">
     <div class="container">
-      <div class="row">
-        <div class="col-12 col-md-2">
-          <img src="img/logo2.jpg">
+			<h3 class="mb-3">Quick Links</h3>
+      <div class="row my-4">
+        <div class="col-4">
+          <a class="d-block w-auto text-center p-3 btn btn-primary btn-round-border btn-primary-accent btn-hovershadow" href="#">
+						<i class="fas fa-flask d-block mb-2" style="font-size: 2rem"></i>
+            Research Activities
+          </a>
         </div>
-
-        <div class="col-8 col-md">
-          <h5>Resources</h5>
-          <ul class="list-unstyled text-small">
-            <li>Location</li>
-            <li>Phone</li>
-            <li>Email</li>
-          </ul>
+        <div class="col-4">
+          <a class="d-block w-auto text-center p-3 btn btn-primary btn-round-border btn-primary-accent btn-hovershadow" href="#">
+						<i class="fas fa-hands-helping d-block mb-2" style="font-size: 2rem"></i>
+						Research Affiliation Program
+          </a>
         </div>
-				<div class="col-4 col-md">
-          <h5>Menu</h5>
-          <ul class="list-unstyled text-small">
-            <li><a class="text-muted" href="#">Home</a></li>
-            <li><a class="text-muted" href="#">About</a></li>
-						<li><a class="text-muted" href="#">Research</a></li>
-						<li><a class="text-muted" href="#">Affiliates</a></li>
-            <li><a class="text-muted" href="#">Publications</a></li>
-            <li><a class="text-muted" href="#">Contact us</a></li>
-          </ul>
+        <div class="col-4">
+          <a class="d-block w-auto text-center p-3 btn btn-primary btn-round-border btn-primary-accent btn-hovershadow" href="#">
+						<i class="fas fa-info-circle d-block mb-2" style="font-size: 2rem"></i>
+						Other Program &amp; Services
+          </a>
         </div>
       </div>
     </div>
-  </footer>
+		<div class="background-secondary">
+			<div class="container my-5 py-3">
+	      <h3 class="mb-3">News &amp; Announcements</h3>
+	      <div class="row">
+	        <div class="col-3">
+	          <a class="btn btn-feature">
+	            <span class="gradient-overlay"></span>
+							<h5 class="gradient-title m-0 text-white p-2 font-weight-bold">
+								Happy Holidays!
+							</h5>
+	          </a>
+	        </div>
+	        <div class="col-3">
+						<a class="btn btn-feature">
+	            <span class="gradient-overlay"></span>
+							<h5 class="gradient-title m-0 text-white p-2 font-weight-bold">
+								Happy Holidays!
+							</h5>
+	          </a>
+	        </div>
+	        <div class="col-3">
+						<a class="btn btn-feature">
+	            <span class="gradient-overlay"></span>
+							<h5 class="gradient-title m-0 text-white p-2 font-weight-bold">
+								Happy Holidays!
+							</h5>
+	          </a>
+	        </div>
+	        <div class="col-3">
+						<a class="btn btn-feature">
+	            <span class="gradient-overlay"></span>
+							<h5 class="gradient-title m-0 text-white p-2 font-weight-bold">
+								Happy Holidays!
+							</h5>
+	          </a>
+	        </div>
+
+	      </div>
+				<div class="text-right mt-3">
+					<a class="link-boss" href="#">
+						View More
+						<i class="fas fa-caret-right">
+						</i>
+					</a>
+				</div>
+	    </div>
+		</div>
+		<div class="container my-5">
+      <div class="row my-4">
+        <div class="col-4">
+          <h3>Upcoming</h3>
+          <div class="csc-date-rows">
+            <a class="row csc-date-event" href="#">
+              <div class="csc-date-prewrap position-relative">
+                <div class="csc-date-circle csc-date-circle-big position-relative">
+                  <div class="csc-date-text text-white text-center">
+                    <div class="csc-date-day">31</div>
+                    <div class="csc-date-month">Dec</div>
+                  </div>
+                </div>
+              </div>
+              <div class="pl-3 pt-2">
+                <h5 class="font-weight-bold">
+									Rizal Day
+								</h5>
+								<p style="font-size: 0.8rem">
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+								</p>
+              </div>
+            </a>
+            <a class="row csc-date-event" href="#">
+              <div class="csc-date-prewrap position-relative">
+                <div class="csc-date-circle position-relative">
+                  <div class="csc-date-text text-white text-center">
+                    <div class="csc-date-day">01</div>
+                  </div>
+                </div>
+              </div>
+              <div class="pl-3 pt-2">
+								<h5 class="font-weight-bold">
+									New Year
+								</h5>
+
+              </div>
+            </a>
+            <a class="row csc-date-event" href="#">
+              <div class="csc-date-prewrap position-relative">
+                <div class="csc-date-circle position-relative">
+                  <div class="csc-date-text text-white text-center">
+                    <div class="csc-date-day">06</div>
+                  </div>
+                </div>
+              </div>
+              <div class="pl-3 pt-2">
+                <h5 class="font-weight-bold">
+									Continuation of Services
+								</h5>
+              </div>
+            </a>
+          </div>
+					<div class="text-right mt-3">
+						<a class="link-boss" href="#">
+							View More
+							<i class="fas fa-caret-right"></i>
+						</a>
+					</div>
+				</div>
+        <div class="col-8">
+          <h3>The CSC Staff</h3>
+	  			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas mauris ligula, lobortis sit amet libero eget, accumsan malesuada lectus. Suspendisse potenti. Proin nec purus metus. Integer volutpat at libero in hendrerit. Cras vulputate lorem vel pellentesque tincidunt. Nam pellentesque nunc vel semper dignissim. Duis nulla est, aliquet non tellus a, lacinia dapibus dui.</p>
+					<div>
+						
+					</div>
+        </div>
+      </div>
+      <div style="opacity: 0.2">
+        <h3>Publications</h3>
+        <div class="row">
+          <div class="col-4">
+            <div class="pubs">
+              <div class="pubs1">
+								<h3> Research Reports</h3>
+								<a href="#"><img class="image" src="img/news.jpeg"></a>
+								<p> This section contains the reports of the CSC researches.</p>
+			  			</div>
+            </div>
+            <div class="pubs">
+              <div class="pubs1">
+								<h3> The Cordillera Review</h3>
+								<a href="#"><img class="image" src="img/pap.png" style="border:2px solid #656665;"></a>
+								<p> This section contains the Cordilleran reviews. </p>
+						  </div>
+            </div>
+						<div class="pubs">
+              <div class="pubs1">
+								<h3> Conference Proceedings</h3>
+								<a href="#"><img class="image" src="img/audience.png" style="border:2px solid #656665;"></a>
+								<p> This section contains the records and marks of held conferences. </p>
+						  </div>
+          	</div>
+						<div class="pubs">
+              <div class="pubs1">
+								<h3> Special Publications</h3>
+								<a href="#"><img class="image" src="img/pile.jpg" style="border:2px solid #656665;"></a>
+								<p> This section contains the special publications. </p>
+						  </div>
+            </div>
+          </div>
+	    	</div>
+			</div>
+		</div>
+	</div>
+	<div class="d-flex justify-content-center">
+		<div>
+			<img class="mb-5" src="img/hagabi.png" width="200">
+		</div>
+	</div>
+	<footer class="sans-serif text-white" style="background-color: #191919">
+		<div style="min-height: 45px; background-image: url(img/lizard.jpg); background-repeat: x-repeat; background-size: contain;">
+		</div>
+		<div class="container p-5">
+			<div class="row">
+				<div class="col-12 col-md-2">
+					<img src="img/logo2.jpg">
+				</div>
+				<div class="col-8 col-md">
+					<h5>Resources</h5>
+						<ul class="list-unstyled text-small">
+							<li>Location</li>
+							<li>Phone</li>
+							<li>Email</li>
+						</ul>
+				</div>
+				<div class="col-4 col-md">
+					<h5>Menu</h5>
+					<ul class="list-unstyled text-small">
+						<li><a class="text-muted" href="#">Home</a></li>
+						<li><a class="text-muted" href="#">About</a></li>
+						<li><a class="text-muted" href="#">Research</a></li>
+						<li><a class="text-muted" href="#">Affiliates</a></li>
+						<li><a class="text-muted" href="#">Publications</a></li>
+						<li><a class="text-muted" href="#">Contact us</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
 </body>
 </html>

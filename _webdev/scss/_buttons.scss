@@ -49,6 +49,11 @@
   }
 }
 
+.link-boss {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
 // Future-proof disabling of clicks on `<a>` elements
 a.btn.disabled,
 fieldset:disabled a.btn {
