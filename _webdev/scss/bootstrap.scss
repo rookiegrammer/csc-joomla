@@ -54,6 +54,7 @@ a {
 
 .btn-round-border {
   border-radius: 0.4rem;
+  white-space: normal;
 }
 
 .lower-thirds {
@@ -235,6 +236,15 @@ h3 {
   background-color: $secondary !important;
 }
 
+.background-dark {
+  background-color: $dark !important;
+}
+
+.background-accent {
+  background-color: $accent !important;
+}
+
+
 .carousel-text-block {
   z-index: 1;
   position: absolute;
@@ -258,6 +268,8 @@ h3 {
 .nav-link {
   @include transition($btn-transition);
 
+  color: white;
+
   .nav-bars {
     @include transition($btn-transition);
     border-bottom: solid 1rem transparent;
@@ -265,12 +277,14 @@ h3 {
   }
 
   &.active .nav-bars {
-    border-bottom-color: $primary;
+    border-bottom-color: white;
   }
 
   &:hover, &:active, &:focus {
+    color: white;
+    opacity: 0.8;
     .nav-bars {
-      border-bottom-color: $accent;
+      border-bottom-color: white;
     }
   }
 }
