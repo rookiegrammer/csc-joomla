@@ -14,10 +14,11 @@
 		<filename>templateDetails.xml</filename>
 	</files>
 	<positions>
-    <position>breadcrumb</position>
+		<position>front</position>
 		<position>left</position>
 		<position>right</position>
 		<position>top</position>
+		<position>menu</position>
 		<position>user1</position>
 		<position>user2</position>
 		<position>user3</position>
