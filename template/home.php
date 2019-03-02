@@ -1,6 +1,6 @@
 <?php
 
-function get_content_from_category($category, $fields = null) {
+function get_content_from_category($category, $fields = null, $limit = 0) {
   $db = JFactory::getDbo();
 
   $query = $db->getQuery(true);
@@ -14,6 +14,10 @@ function get_content_from_category($category, $fields = null) {
          ->from($db->quoteName('#__content'))
          ->where($db->quoteName('catid') . ' IN (' . $subQuery . ')')
          ->order('publish_up DESC');
+  if (!empty($limit)) {
+   $query ->setLimit($limit);
+  }
+
   $db->setQuery($query);
   return $db->loadObjectList();
 }

@@ -232,6 +232,10 @@ h3 {
   font-weight: bold;
 }
 
+.background-primary {
+  background-color: $primary !important;
+}
+
 .background-secondary {
   background-color: $secondary !important;
 }
@@ -268,22 +272,21 @@ h3 {
 .nav-link {
   @include transition($btn-transition);
 
-  color: white;
-
   .nav-bars {
     @include transition($btn-transition);
+
+    color: $secondary !important;
     border-bottom: solid 1rem transparent;
     padding-bottom: 2px;
   }
 
   &.active .nav-bars {
-    border-bottom-color: white;
+    border-bottom-color: $secondary;
   }
 
   &:hover, &:active, &:focus {
-    color: white;
-    opacity: 0.8;
     .nav-bars {
+      color: white !important;
       border-bottom-color: white;
     }
   }
