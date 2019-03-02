@@ -14,6 +14,7 @@ function get_content_from_category($category, $fields = null, $limit = 0) {
          ->from($db->quoteName('#__content'))
          ->where($db->quoteName('catid') . ' IN (' . $subQuery . ')')
          ->order('publish_up DESC');
+
   if (!empty($limit)) {
    $query ->setLimit($limit);
   }
@@ -42,15 +43,15 @@ function get_link($article) {
   $base = JURI::base(true);
   $path = $base.'/templates/'.$app->getTemplate().'/';
 
-  $news = get_content_from_category('news', ['id', 'title', 'introtext', 'catid', 'fulltext', 'language'] );
+  $sliders = get_content_from_category('event', ['id', 'title', 'introtext', 'catid', 'fulltext', 'language'] );
   $about_article = get_article_with_alias('about');
 ?>
 
 
-<?php if (count($news)) : ?>
+<?php if (count($sliders)) : ?>
 <div id="csc-slides" class="carousel slide text-white text-center" data-ride="carousel">
   <ol class="carousel-indicators" style="bottom: auto">
-    <?php for ($i=0; $i<count($news); $i++) : ?>
+    <?php for ($i=0; $i<count($sliders); $i++) : ?>
     <li data-target="#csc-slides" data-slide-to="<?= $i ?>" class="<?= $i==0 ? 'active' : '' ?>"></li>
     <?php endfor; ?>
   </ol>
@@ -59,10 +60,10 @@ function get_link($article) {
   </h3>
   <div class="carousel-inner">
     <?php
-      $news_begin = true;
-      foreach ($news as $update) :?>
+      $sliders_begin = true;
+      foreach ($sliders as $update) :?>
 
-      <div class="carousel-item<?= $news_begin ? ' active' : '' ?>">
+      <div class="carousel-item<?= $sliders_begin ? ' active' : '' ?>">
         <a href="<?= get_link($update) ?>">
           <img class="d-block h-100 m-auto" src="<?= $path ?>img/placeholder.jpg" alt="Image">
           <div class="carousel-text-block">
@@ -83,7 +84,7 @@ function get_link($article) {
         </a>
       </div>
   <?php
-    $news_begin = false;
+    $sliders_begin = false;
     endforeach; ?>
   </div>
   <a class="carousel-control-prev" href="#csc-slides" role="button" data-slide="prev">
@@ -96,3 +97,169 @@ function get_link($article) {
   </a>
 </div>
 <?php endif; ?>
+<div class="container my-5">
+  <h3 class="text-center text-primary" style="font-size: 1.8rem">
+    <?= $about_article->introtext ?>
+  </h3>
+</div>
+
+<div class="py-5">
+  <div class="container">
+    <h3 class="mb-3">Quick Links</h3>
+    <div class="row my-4">
+      <div class="col-4">
+        <a class="d-block w-auto text-center p-3 btn btn-primary btn-round-border btn-primary-accent btn-hovershadow" href="#">
+          <i class="fas fa-flask d-block mb-2" style="font-size: 2rem"></i>
+          Research Activities
+        </a>
+      </div>
+      <div class="col-4">
+        <a class="d-block w-auto text-center p-3 btn btn-primary btn-round-border btn-primary-accent btn-hovershadow" href="#">
+          <i class="fas fa-hands-helping d-block mb-2" style="font-size: 2rem"></i>
+          Research Affiliation Program
+        </a>
+      </div>
+      <div class="col-4">
+        <a class="d-block w-auto text-center p-3 btn btn-primary btn-round-border btn-primary-accent btn-hovershadow" href="#">
+          <i class="fas fa-info-circle d-block mb-2" style="font-size: 2rem"></i>
+          Other Program &amp; Services
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="background-secondary">
+    <div class="container my-5 py-3">
+      <h3 class="mb-3">News &amp; Announcements</h3>
+      <div class="row">
+        <div class="col-3">
+          <a class="btn btn-feature">
+            <span class="gradient-overlay"></span>
+            <h5 class="gradient-title m-0 text-white p-2 font-weight-bold">
+              Happy Holidays!
+            </h5>
+          </a>
+        </div>
+        <div class="col-3">
+          <a class="btn btn-feature">
+            <span class="gradient-overlay"></span>
+            <h5 class="gradient-title m-0 text-white p-2 font-weight-bold">
+              Happy Holidays!
+            </h5>
+          </a>
+        </div>
+        <div class="col-3">
+          <a class="btn btn-feature">
+            <span class="gradient-overlay"></span>
+            <h5 class="gradient-title m-0 text-white p-2 font-weight-bold">
+              Happy Holidays!
+            </h5>
+          </a>
+        </div>
+        <div class="col-3">
+          <a class="btn btn-feature">
+            <span class="gradient-overlay"></span>
+            <h5 class="gradient-title m-0 text-white p-2 font-weight-bold">
+              Happy Holidays!
+            </h5>
+          </a>
+        </div>
+
+      </div>
+      <div class="text-right mt-3">
+        <a class="link-boss" href="#">
+          Learn More
+          <i class="fas fa-caret-right">
+          </i>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="container mt-5">
+    <div class="row mt-4">
+      <div class="col-4">
+        <h3>Upcoming</h3>
+        <div class="csc-date-rows">
+          <a class="row csc-date-event" href="#">
+            <div class="csc-date-prewrap position-relative">
+              <div class="csc-date-circle csc-date-circle-big position-relative">
+                <div class="csc-date-text text-white text-center">
+                  <div class="csc-date-day">31</div>
+                  <div class="csc-date-month">Dec</div>
+                </div>
+              </div>
+            </div>
+            <div class="pl-3 pt-2">
+              <h5 class="font-weight-bold">
+                Rizal Day
+              </h5>
+              <p style="font-size: 0.8rem">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              </p>
+            </div>
+          </a>
+          <a class="row csc-date-event" href="#">
+            <div class="csc-date-prewrap position-relative">
+              <div class="csc-date-circle position-relative">
+                <div class="csc-date-text text-white text-center">
+                  <div class="csc-date-day">01</div>
+                </div>
+              </div>
+            </div>
+            <div class="pl-3 pt-2">
+              <h5 class="font-weight-bold">
+                New Year
+              </h5>
+
+            </div>
+          </a>
+          <a class="row csc-date-event" href="#">
+            <div class="csc-date-prewrap position-relative">
+              <div class="csc-date-circle position-relative">
+                <div class="csc-date-text text-white text-center">
+                  <div class="csc-date-day">06</div>
+                </div>
+              </div>
+            </div>
+            <div class="pl-3 pt-2">
+              <h5 class="font-weight-bold">
+                Continuation of Services
+              </h5>
+            </div>
+          </a>
+        </div>
+        <div class="text-right mt-3">
+          <a class="link-boss" href="#">
+            Learn More
+            <i class="fas fa-caret-right"></i>
+          </a>
+        </div>
+      </div>
+      <div class="col-8">
+        <h3>The CSC Staff</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas mauris ligula, lobortis sit amet libero eget, accumsan malesuada lectus. Suspendisse potenti. Proin nec purus metus. Integer volutpat at libero in hendrerit. Cras vulputate lorem vel pellentesque tincidunt. Nam pellentesque nunc vel semper dignissim. Duis nulla est, aliquet non tellus a, lacinia dapibus dui.</p>
+        <div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="my-5">
+  <div class="container">
+
+  </div>
+  <div class="mb-4" style="background-image: url(<?= $path ?>img/image1.jpg); background-size: cover; background-position: center;">
+    <div>
+      <div class="container py-5">
+        <div class="row">
+          <div class="p-4" style="background-color: rgba(255,255,255,0.6); color: black">
+            <h3 class="text-center text-primary pb-3" style="color: inherit !important; font-size: 1.5rem">
+              About the CSC
+            </h3>
+            <?= $about_article->fulltext ?>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
