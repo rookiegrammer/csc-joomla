@@ -9,9 +9,13 @@
 	<copyright>Copyright (C) 2018 UPB-CSC. All rights reserved.</copyright>
 	<description>This is the template for the UPB Cordillera Studies Center Website.</description>
 	<files>
-		<filename>component.php</filename>
 		<filename>index.php</filename>
 		<filename>templateDetails.xml</filename>
+		<folder>css</folder>
+		<folder>html</folder>
+		<folder>img</folder>
+		<folder>js</folder>
+		<folder>template</folder>
 	</files>
 	<positions>
 		<position>front</position>

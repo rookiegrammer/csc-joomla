@@ -13,7 +13,7 @@ function get_content_from_category($category, $fields = null, $limit = 0) {
   $query ->select(empty($fields) ? '*' : $db->quoteName($fields))
          ->from($db->quoteName('#__content'))
          ->where($db->quoteName('catid') . ' IN (' . $subQuery . ')')
-         ->order('publish_up DESC');
+         ->order('ordering');
 
   if (!empty($limit)) {
    $query ->setLimit($limit);
@@ -45,6 +45,9 @@ function get_link($article) {
 
   $sliders = get_content_from_category('event', ['id', 'title', 'introtext', 'catid', 'fulltext', 'language'] );
   $about_article = get_article_with_alias('about');
+
+  $news = get_content_from_category('news', ['id', 'title', 'introtext', 'catid', 'fulltext', 'language'], 12);
+  $quicks = get_content_from_category('page-quick', ['id', 'title', 'introtext', 'catid', 'fulltext', 'language', 'alias'], 3);
 ?>
 
 
@@ -107,7 +110,14 @@ function get_link($article) {
   <div class="container">
     <h3 class="mb-3">Quick Links</h3>
     <div class="row my-4">
-      <div class="col-4">
+      <?php foreach ($quicks as $quicklink) : ?>
+        <div class="col-4">
+          <a class="d-block w-auto text-center p-3 btn btn-primary btn-round-border btn-primary-accent btn-hovershadow" href="<?= get_link($quicklink) ?>">
+            <i class="fas fa-<?= $quicklink->alias ?> d-block mb-2" style="font-size: 2rem"></i>
+            <?= $quicklink->title ?>
+          </a>
+        </div>
+      <!-- <div class="col-4">
         <a class="d-block w-auto text-center p-3 btn btn-primary btn-round-border btn-primary-accent btn-hovershadow" href="#">
           <i class="fas fa-flask d-block mb-2" style="font-size: 2rem"></i>
           Research Activities
@@ -124,45 +134,24 @@ function get_link($article) {
           <i class="fas fa-info-circle d-block mb-2" style="font-size: 2rem"></i>
           Other Program &amp; Services
         </a>
-      </div>
+      </div> -->
+    <?php endforeach; ?>
     </div>
   </div>
   <div class="background-secondary">
     <div class="container my-5 py-3">
       <h3 class="mb-3">News &amp; Announcements</h3>
       <div class="row">
+        <?php foreach ($news as $news_each) : ?>
         <div class="col-3">
-          <a class="btn btn-feature">
+          <a class="btn btn-feature" href="<?= get_link($news_each) ?>">
             <span class="gradient-overlay"></span>
             <h5 class="gradient-title m-0 text-white p-2 font-weight-bold">
-              Happy Holidays!
+              <?= $news_each->title ?>
             </h5>
           </a>
         </div>
-        <div class="col-3">
-          <a class="btn btn-feature">
-            <span class="gradient-overlay"></span>
-            <h5 class="gradient-title m-0 text-white p-2 font-weight-bold">
-              Happy Holidays!
-            </h5>
-          </a>
-        </div>
-        <div class="col-3">
-          <a class="btn btn-feature">
-            <span class="gradient-overlay"></span>
-            <h5 class="gradient-title m-0 text-white p-2 font-weight-bold">
-              Happy Holidays!
-            </h5>
-          </a>
-        </div>
-        <div class="col-3">
-          <a class="btn btn-feature">
-            <span class="gradient-overlay"></span>
-            <h5 class="gradient-title m-0 text-white p-2 font-weight-bold">
-              Happy Holidays!
-            </h5>
-          </a>
-        </div>
+      <?php endforeach; ?>
 
       </div>
       <div class="text-right mt-3">
