@@ -1,6 +1,6 @@
 <?php
 
-function get_content_from_category($category, $fields = null, $limit = 0) {
+function get_content_from_category($category, $fields = null, $limit = 0, $order = 'ordering') {
   $db = JFactory::getDbo();
 
   $query = $db->getQuery(true);
@@ -13,7 +13,8 @@ function get_content_from_category($category, $fields = null, $limit = 0) {
   $query ->select(empty($fields) ? '*' : $db->quoteName($fields))
          ->from($db->quoteName('#__content'))
          ->where($db->quoteName('catid') . ' IN (' . $subQuery . ')')
-         ->order('ordering');
+         ->andwhere( $db->quoteName('state') . ' = 1')
+         ->order($order);
 
   if (!empty($limit)) {
    $query ->setLimit($limit);
@@ -43,11 +44,13 @@ function get_link($article) {
   $base = JURI::base(true);
   $path = $base.'/templates/'.$app->getTemplate().'/';
 
-  $sliders = get_content_from_category('event', ['id', 'title', 'introtext', 'catid', 'fulltext', 'language'] );
+  $sliders = get_content_from_category('slide', ['id', 'title', 'introtext', 'catid', 'fulltext', 'language'] );
   $about_article = get_article_with_alias('about');
 
   $news = get_content_from_category('news', ['id', 'title', 'introtext', 'catid', 'fulltext', 'language'], 12);
   $quicks = get_content_from_category('page-quick', ['id', 'title', 'introtext', 'catid', 'fulltext', 'language', 'alias'], 3);
+
+  $events = get_content_from_category('event', ['id', 'title', 'introtext', 'catid', 'fulltext', 'language', 'publish_down'], 3, 'publish_down ASC');
 ?>
 
 
@@ -168,24 +171,38 @@ function get_link($article) {
       <div class="col-4">
         <h3>Upcoming</h3>
         <div class="csc-date-rows">
+          <?php
+            $e_first = true;
+            foreach ($events as $event) :
+              $date = strtotime($event->publish_down);
+            ?>
           <a class="row csc-date-event" href="#">
             <div class="csc-date-prewrap position-relative">
-              <div class="csc-date-circle csc-date-circle-big position-relative">
+              <div class="csc-date-circle <?= $e_first ? 'csc-date-circle-big' : '' ?> position-relative">
                 <div class="csc-date-text text-white text-center">
-                  <div class="csc-date-day">31</div>
-                  <div class="csc-date-month">Dec</div>
+                  <div class="csc-date-day"><?= date('d', $date) ?></div>
+                  <?php if ($e_first) : ?>
+                  <div class="csc-date-month"><?= date('M', $date) ?></div>
+                  <?php endif; ?>
                 </div>
               </div>
             </div>
             <div class="pl-3 pt-2">
               <h5 class="font-weight-bold">
-                Rizal Day
+                <?= $event->title ?>
               </h5>
               <p style="font-size: 0.8rem">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                <?php if ($e_first) : ?>
+                <?= substr(strip_tags($event->introtext), 0, 100) ?>...
+                <?php else : ?>
+                  <?= date('F Y', $date) ?>
+                <?php endif; ?>
               </p>
             </div>
           </a>
+          <?php
+            $e_first = false;
+            endforeach; ?>
           <a class="row csc-date-event" href="#">
             <div class="csc-date-prewrap position-relative">
               <div class="csc-date-circle position-relative">
