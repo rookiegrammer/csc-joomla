@@ -43,12 +43,12 @@
             <<?php if ($is_home) : ?>h1 <?php else: ?>div <?php endif; ?>
              class="font-weight-bold m-0 p-0" style="line-height: 1">
              <a class="navbar-brand serif pb-0 text-white" href="#" style="font-size: 2.5rem;">
-               Cordillera Studies Center
+               <?= $this->params->get('sitetitle') ?>
              </a>
             <?php if ($is_home) : ?>
             </h1> <?php else: ?>
             </div> <?php endif; ?>
-            <div class="font-weight-bold" style="font-size: 1rem; color: #aaa">University of the Philippines Baguio</div>
+            <div class="font-weight-bold" style="font-size: 1rem; color: #aaa"><?= $this->params->get('sitesubtitle') ?></div>
             <?php
               $menu_items = $menu->getItems('menutype', 'mainmenu');
               $active = $menu->getActive();

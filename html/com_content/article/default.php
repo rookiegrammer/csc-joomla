@@ -20,17 +20,18 @@ JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
 // $user    = JFactory::getUser();
 // $info    = $params->get('info_block_position', 0);
 
+defined("CSC_CUSTOM_CATEGORIES") || define("CSC_CUSTOM_CATEGORIES", ['event', 'news', 'page-quick', 'page', 'publication', 'slide', 'staff']);
+
 $item = $this->item;
 $user = JFactory::getUser();
 
 $package = array('item'=>$item, 'user'=>$user);
 
 // $this->item->category_alias
-$html = JLayoutHelper::render('custom.'.$this->item->category_alias, $package);
-if (empty($html)) {
-	echo JLayoutHelper::render('custom.default', $package);
+if (in_array($this->item->category_alias, CSC_CUSTOM_CATEGORIES)) {
+	echo JLayoutHelper::render('custom.'.$this->item->category_alias, $package);
 } else {
-	echo $html;
+	echo JLayoutHelper::render('custom.default', $package);
 }
 
 ?>
