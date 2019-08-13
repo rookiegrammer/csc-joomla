@@ -1,0 +1,4 @@
+<!-- PUBLICATION -->
+<?php
+  extract($displayData);
+?>
