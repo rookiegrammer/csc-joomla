@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<categories>
+  <category alias="event">
+    <title>Event</title>
+    <description></description>
+  </category>
+  <category alias="news">
+    <title>News</title>
+    <description>aa</description>
+  </category>
+  <category alias="page-quick">
+    <title>Quick Page</title>
+    <description>a2</description>
+  </category>
+  <category alias="page">
+    <title>Page</title>
+    <description>ss</description>
+  </category>
+  <category alias="publication">
+    <title>Publication</title>
+    <description>sd</description>
+  </category>
+  <category alias="slide">
+    <title>Slides</title>
+    <description></description>
+  </category>
+  <category alias="staff">
+    <title>Crew</title>
+    <description></description>
+  </category>
+</categories>
