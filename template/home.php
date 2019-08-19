@@ -135,16 +135,22 @@ function get_link($article) {
 </div>
 
 <div class="py-5">
+  <?php
+  if (!empty($quicks)) : ?>
   <div class="container">
     <h3 class="mb-3">Quick Links</h3>
     <div class="row my-4">
-      <?php foreach ($quicks as $quicklink) : ?>
+      <?php
+      foreach ($quicks as $quicklink) : ?>
         <div class="col-4">
           <a class="d-block w-auto text-center p-3 btn btn-primary btn-round-border btn-primary-accent btn-hovershadow" href="<?= get_link($quicklink) ?>">
             <i class="fas fa-<?= $quicklink->note ?> d-block mb-2" style="font-size: 2rem"></i>
             <?= $quicklink->title ?>
           </a>
         </div>
+      <?php
+      endforeach;
+      ?>
       <!-- <div class="col-4">
         <a class="d-block w-auto text-center p-3 btn btn-primary btn-round-border btn-primary-accent btn-hovershadow" href="#">
           <i class="fas fa-flask d-block mb-2" style="font-size: 2rem"></i>
@@ -163,14 +169,16 @@ function get_link($article) {
           Other Program &amp; Services
         </a>
       </div> -->
-    <?php endforeach; ?>
     </div>
   </div>
+  <?php endif; ?>
   <div class="background-secondary">
     <div class="container my-5 py-3">
       <h3 class="mb-3">News &amp; Announcements</h3>
       <div class="row">
-        <?php foreach ($news as $news_each) : ?>
+      <?php
+      if (!empty($news)) :
+      foreach ($news as $news_each) : ?>
         <div class="col-3">
           <a class="btn btn-feature" href="<?= get_link($news_each) ?>">
             <span class="gradient-overlay"></span>
@@ -179,8 +187,12 @@ function get_link($article) {
             </h5>
           </a>
         </div>
-      <?php endforeach; ?>
-
+      <?php
+      endforeach;
+      else :
+      ?>
+      <pre>There are no news nor announcements as of this time.</pre>
+      <?php endif; ?>
       </div>
       <div class="text-right mt-3">
         <a class="link-boss" href="#">
@@ -293,17 +305,13 @@ function get_link($article) {
 
   </div>
   <div class="mb-4" style="background-image: url(<?= $path ?>img/image1.jpg); background-size: cover; background-position: center;">
-    <div>
-      <div class="container py-5">
-        <div class="row">
-          <div class="p-4" style="background-color: rgba(255,255,255,0.6); color: black">
-            <h3 class="text-center text-primary pb-3" style="color: inherit !important; font-size: 1.5rem">
-              About the <?= $this->params->get('sitetitle') ?>
-            </h3>
-            <?= nl2br($this->params->get('history')) ?>
-          </div>
+      <div style="background-color: rgba(255,255,255,0.6); color: black; text-shadow: 0 0 10px #ffffff;">
+        <div class="container py-5">
+          <h3 class="text-primary pb-3" style="color: inherit !important; font-size: 1.5rem">
+            About the <?= $this->params->get('sitetitle') ?>
+          </h3>
+          <?= nl2br($this->params->get('history')) ?>
         </div>
       </div>
-    </div>
   </div>
 </div>

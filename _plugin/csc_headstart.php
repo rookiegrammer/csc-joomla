@@ -38,7 +38,7 @@ class plgContentCsc_headstart extends JPlugin {
   }
 
   protected function checkCategory($alias) {
-    return count(queryCategory($alias)) <= 0;
+    return count($this->queryCategory($alias)) <= 0;
   }
 
   protected function addCategory($title, $desc, $alias, $parent_id = 1, $extension = 'com_content') {

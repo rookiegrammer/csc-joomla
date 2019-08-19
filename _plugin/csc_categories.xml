@@ -6,19 +6,19 @@
   </category>
   <category alias="news">
     <title>News</title>
-    <description>aa</description>
+    <description></description>
   </category>
   <category alias="page-quick">
     <title>Quick Page</title>
-    <description>a2</description>
+    <description></description>
   </category>
   <category alias="page">
     <title>Page</title>
-    <description>ss</description>
+    <description></description>
   </category>
   <category alias="publication">
     <title>Publication</title>
-    <description>sd</description>
+    <description></description>
   </category>
   <category alias="slide">
     <title>Slides</title>

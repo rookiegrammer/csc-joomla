@@ -25,12 +25,40 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="<?= $path ?>css/bootstrap.min.css" rel="stylesheet">
 
+  <style>
+  /*
+  *
+  * ==========================================
+  * CUSTOM UTIL CLASSES
+  * ==========================================
+  *
+  */
+
+  .dropdown-submenu {
+  position: relative;
+  }
+
+  .dropdown-submenu>a:after {
+  content: "\f0da";
+  float: right;
+  border: none;
+  font-family: 'FontAwesome';
+  }
+
+  .dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: 0px;
+  margin-left: 0px;
+  }
+  </style>
+
   <script src="<?= $path ?>js/jquery-3.3.1.min.js"></script>
   <script src="<?= $path ?>js/popper.min.js"></script>
   <script src="<?= $path ?>js/bootstrap.min.js"></script>
 </head>
 <body>
-  <header class="background-primary" style="overflow: hidden">
+  <header class="background-primary">
     <div style="min-height: 45px; line-height: 1; background-image: url(<?= $path ?>img/lizard.jpg); background-repeat: x-repeat; background-size: contain;">
 		</div>
     <nav class="navbar navbar-light p-0">
@@ -49,33 +77,7 @@
             </h1> <?php else: ?>
             </div> <?php endif; ?>
             <div class="font-weight-bold" style="font-size: 1rem; color: #aaa"><?= $this->params->get('sitesubtitle') ?></div>
-            <?php
-              $menu_items = $menu->getItems('menutype', 'mainmenu');
-              $active = $menu->getActive();
-
-              if (count($menu_items)) : ?>
-              <!-- <div class="navbar pull-left">
-                <a class="btn btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
-                  <span class="element-invisible">Open Menu</span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                </a>
-              </div> -->
-              <div class="nav-collapse">
-                <ul class="nav font-weight-bold sans-serif text-uppercase justify-content-center pt-3">
-                  <?php foreach ($menu_items as $menu_item): ?>
-      			        <li class="nav-item">
-      			          <a class="nav-link<?= $is_home && $menu_item->home || !$is_home && $active && $menu_item->id == $active->id ? ' active' : ''?>" href="<?= JRoute::_($menu_item->link) ?>">
-      									<span class="nav-bars">
-      										<?= $menu_item->title ?>
-      									</span>
-      								</a>
-      			        </li>
-                  <?php endforeach; ?>
-    			      </ul>
-              </div>
-            <?php endif; ?>
+            <jdoc:include type="modules" name="menu" />
           </div>
         </div>
       </div>
@@ -121,5 +123,27 @@
 			</div>
 		</div>
 	</footer>
+  <script>
+  $(function() {
+// ------------------------------------------------------- //
+// Multi Level dropdowns
+// ------------------------------------------------------ //
+$("ul.dropdown-menu [data-toggle='dropdown']").on("click", function(event) {
+  event.preventDefault();
+  event.stopPropagation();
+
+  $(this).siblings().toggleClass("show");
+
+
+  if (!$(this).next().hasClass('show')) {
+    $(this).parents('.dropdown-menu').first().find('.show').removeClass("show");
+  }
+  $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function(e) {
+    $('.dropdown-submenu .show').removeClass("show");
+  });
+
+});
+});
+  </script>
 </body>
 </html>
