@@ -28,24 +28,22 @@ $beforeDisplayContent = trim(implode("\n", $results));
 $results = $dispatcher->trigger('onContentAfterDisplay', array($this->category->extension . '.categories', &$this->category, &$this->params, 0));
 $afterDisplayContent = trim(implode("\n", $results));
 
-function csc_load_layout($layout, $style) {
-	$this->csc_item_style = $style;
-	include realpath(__DIR__).'/displays/'.$layout.'.php';
-}
+$layout = new class(){};
 
 function csc_load_item($blog, &$item) {
 	$blog->item = &$item;
-	$blog->item->csc_item_style = $blog->csc_item_style;
-	$blog->item->csc_item_schema = $blog->csc_item_schema;
 	echo $blog->loadTemplate('item');
 }
 
-$this->csc_item_style = '';
-$this->csc_disp_schema = 'Blog';
-$this->csc_item_schema = 'BlogPosting';
+function csc_display($disp, $item_style) {
+	JFactory::getApplication()->set('blog_item_style', $item_style);
+	return realpath(__DIR__).'/displays/'.$disp.'.php';
+}
 
-if (file_exists(realpath(__DIR__).'/custom/blog.'.$this->category->alias.'.php')) {
-	include realpath(__DIR__).'/custom/blog.'.$this->category->alias.'.php';
+JFactory::getApplication()->set('blog_item_style', '');
+
+if (file_exists(realpath(__DIR__).'/custom/'.$this->category->alias.'.php')) {
+	include realpath(__DIR__).'/custom/'.$this->category->alias.'.php';
 } else {
-	include realpath(__DIR__).'/custom/blog.default.php';
+	include realpath(__DIR__).'/custom/default.php';
 }

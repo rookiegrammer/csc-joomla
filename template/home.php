@@ -107,7 +107,7 @@ function get_link($article) {
                   <?= $update->title ?>
                 </h5>
                 <p class="text-white">
-                  <?= $update->fulltext ? strip_tags($update->introtext) : substr(strip_tags($update->introtext), 0, 100) ?>
+                  <?= $update->introtext ? strip_tags($update->introtext) : substr(strip_tags($update->fulltext), 0, 100) ?>
                 </p>
               </div>
             </div>

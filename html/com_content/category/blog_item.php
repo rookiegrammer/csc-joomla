@@ -17,9 +17,9 @@ $info    = $params->get('info_block_position', 0);
 
 // Check if associations are implemented. If they are, define the parameter.
 $assocParam = (JLanguageAssociations::isEnabled() && $params->get('show_associations'));
-
-if (file_exists(realpath(__DIR__).'/items/'.$this->csc_item_style.'.php')) {
-	include realpath(__DIR__).'/items/'.$this->csc_item_style.'.php';
+$item_style = JFactory::getApplication()->get('blog_item_style');
+if (file_exists(realpath(__DIR__).'/items/'.$item_style.'.php')) {
+	include realpath(__DIR__).'/items/'.$item_style.'.php';
 } else {
 	include realpath(__DIR__).'/items/default.php';
 }

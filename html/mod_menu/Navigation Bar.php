@@ -18,10 +18,11 @@ if ($tagId = $params->get('tag_id', ''))
 
 // The menu class is deprecated. Use nav instead
 ?>
-<div class="nav-collapse">
+<div class="easynavbar">
 <ul class="nav font-weight-bold sans-serif text-uppercase justify-content-center pt-3 menu<?php echo $class_sfx; ?> mod-list" id="<?php echo $id; ?>">
 <?php foreach ($list as $i => &$item)
 {
+
 	$class = 'item-' . $item->id;
 
   $active = false;
@@ -54,54 +55,53 @@ if ($tagId = $params->get('tag_id', ''))
 		}
 	}
 
-	if ($item->parent)
-	{
-		$class .= ' parent';
-	}
-
   if ($item->level <= 1) {
     $class .= ' nav-item';
-    if ($item->deeper) {
-      $class .= ' dropdown';
-    }
   } else if ($item->type === 'separator') {
     $class .= ' dropdown-divider';
-  } else if ($item->deeper) {
-    $class .= ' dropdown-submenu';
   }
+	if ($item->deeper) {
+		$class .= ' dropdown';
+	}
 
 
 	echo '<li class="' . $class . '">';
 
-  if ($item->level <= 1) {
-    if ($item->deeper) {
-      echo '<a id="'.$id.'-'.$item->id.'-drop" class="nav-link dropdown-toggle '.( $active?'active':'' ).'" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >'
-              .'<span class="nav-bars">'.$item->title.'</span></a>';
-    } else {
-      echo '<a class="nav-link'.( $active?' active':'' ).'" rel="'.$item->anchor_rel.'" href="'.(JRoute::_($item->flink)).'">'
-              .'<span class="nav-bars">'.$item->title.'</span></a>';
-    }
-  } else {
-    if ($item->deeper) {
-      echo '<a id="'.$id.'-'.$item->id.'-drop" role="button" class="dropdown-item dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >'
-              .$item->title.'</a>';
-    } else {
-      echo '<a class="dropdown-item" rel="'.$item->anchor_rel.'" href="'.(JRoute::_($item->flink)).'">'
-              .$item->title.'</a>';
-    }
-  }
+	switch ($item->type) {
+		case 'component':
+		case 'heading':
+		case 'url':
+			if ($item->level <= 1) {
+		    if ($item->deeper) {
+		      echo '<a id="menu'.$id.'-'.$item->id.'-drop" class="nav-link dropdown-toggle '.( $active?'active':'' ).'" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >'
+		              .'<span class="nav-bars">'.$item->title.'</span></a>';
+		    } else {
+		      echo '<a class="nav-link'.( $active?' active':'' ).'" rel="'.$item->anchor_rel.'" href="'.(JRoute::_($item->flink)).'">'
+		              .'<span class="nav-bars">'.$item->title.'</span></a>';
+		    }
+		  } else {
+		    if ($item->deeper) {
+		      echo '<a id="menu'.$id.'-'.$item->id.'-drop" role="button" class="dropdown-item dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >'
+		              .$item->title.'</a>';
+		    } else {
+		      echo '<a class="dropdown-item" rel="'.$item->anchor_rel.'" href="'.(JRoute::_($item->flink)).'">'
+		              .$item->title.'</a>';
+		    }
+		  }
+		break;
+		default:
+		break;
+
+	}
+
+
 
 
 
 	// The next item is deeper.
 	if ($item->deeper)
 	{
-    $ul_class = 'dropdown-sub-menu';
-    if ($item->level <= 1) {
-      $ul_class = 'dropdown-menu';
-    }
-
-		echo '<ul aria-labelledby="'.$id.'-'.$item->id.'-drop" class="nav-child unstyled small '.$ul_class.'">';
+		echo '<ul aria-labelledby="menu'.$id.'-'.$item->id.'-drop" class="dropdown-menu">';
 	}
 	// The next item is shallower.
 	elseif ($item->shallower)
