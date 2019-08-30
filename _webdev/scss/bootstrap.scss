@@ -105,6 +105,19 @@ a {
   }
 }
 
+.image-circle {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    min-height: 100%;
+  }
+}
+
 .csc-date-prewrap {
   width: 100px;
   flex-shrink: 0;
@@ -298,4 +311,9 @@ h3 {
 
 .fab::before {
   font-family: "Font Awesome 5 Brands" !important;
+}
+
+footer .breadcrumb {
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.2);
 }

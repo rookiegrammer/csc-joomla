@@ -2,7 +2,7 @@
       $link = JRoute::_(ContentHelperRoute::getArticleRoute($this->item->id,
                   $this->item->catid, $this->item->language)) ?>
 <div class="row mb-4">
-  <a class="col" href="<?= $link ?>">
+  <a class="col-md-auto" href="<?= $link ?>">
     <div class="image-circle">
       <img src="img/image1.jpg" alt="">
     </div>
