@@ -9,7 +9,7 @@
 
 defined('_JEXEC') or die;
 
-$id = $params->menutype.'-nav';
+$id = 'csc-nav';
 
 if ($tagId = $params->get('tag_id', ''))
 {

@@ -58,7 +58,8 @@ function get_article_with_alias($alias, $fields = null) {
          ->where($db->quoteName('alias') . ' = ' . $db->quote($alias))
          ->order('publish_up DESC');
   $db->setQuery($query);
-  return $db->loadObjectList()[0];
+  $list = $db->loadObjectList();
+  return empty($list) ? null : $list[0];
 }
 
 function get_link($article) {

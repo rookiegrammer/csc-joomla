@@ -1,4 +1,4 @@
-<div class="blog<?php echo $this->pageclass_sfx; ?>" itemscope itemtype="https://schema.org/<?= $this->csc_disp_schema ?>">
+<div class="blog<?php echo $this->pageclass_sfx; ?> my-4" itemscope itemtype="https://schema.org/<?= $this->csc_disp_schema ?>">
 
 <?php if ($this->params->get('show_category_title', 1) or $this->params->get('page_subheading')) : ?>
   <h2> <?php echo $this->escape($this->params->get('page_subheading')); ?>
@@ -23,11 +23,11 @@
 
 <?php
   $layout->list = &$this->intro_items;
-  include csc_display('list', 'publication'); ?>
+  include csc_display('list', 'publication-featured'); ?>
 
 <?php
   $layout->list = &$this->lead_items;
-  include csc_display('list', 'publication'); ?>
+  include csc_display('grid', 'publication-grid'); ?>
 
 <?php if ($this->maxLevel != 0 && !empty($this->children[$this->category->id])) : ?>
   <div class="cat-children">
