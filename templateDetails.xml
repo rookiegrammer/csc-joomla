@@ -19,6 +19,7 @@
 	</files>
 	<positions>
 		<position>menu</position>
+		<position>sidebar</position>
 		<position>banner</position>
 		<position>user1</position>
 		<position>user2</position>
@@ -76,6 +77,14 @@
 					description="Organization History"
 					default=""
 					filter="string"
+				/>
+
+				<field
+					name="contentbar"
+					type="checkbox"
+					label="Sidebar for Articles Only"
+					description=""
+					default="0"
 				/>
 			</fieldset>
 		</fields>

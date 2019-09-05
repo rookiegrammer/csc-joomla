@@ -18,7 +18,7 @@ if ($tagId = $params->get('tag_id', ''))
 
 // The menu class is deprecated. Use nav instead
 ?>
-<h5>Menu</h5>
+<h5><?= $module->title ?></h5>
 <ul class="list-unstyled text-small menu<?php echo $class_sfx; ?> mod-list"<?php echo $id; ?>>
 <?php foreach ($list as $i => &$item)
 {

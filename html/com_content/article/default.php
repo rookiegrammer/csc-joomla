@@ -28,5 +28,3 @@ $package = array('item'=>$item, 'user'=>$user);
 
 // $this->item->category_alias
 echo JLayoutHelper::render('custom.content', $package, '', array('suffixes'=>array($this->item->category_alias)));
-
-?>
