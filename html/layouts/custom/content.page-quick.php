@@ -1,4 +1,1 @@
-<!-- PAGE-QUICK -->
-<?php
-  extract($displayData);
-?>
+<?php include 'content.page.php';

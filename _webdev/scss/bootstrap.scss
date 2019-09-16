@@ -52,8 +52,12 @@ a {
   font-family: $font-family-sans-serif;
 }
 
-.btn-round-border {
+.round-border {
   border-radius: 0.4rem;
+}
+
+.btn-round-border {
+  @extend .round-border;
   white-space: normal;
 }
 
@@ -68,6 +72,18 @@ a {
 
 .overflow-hidden {
   overflow: hidden !important;
+}
+
+.event-img-box {
+  display: block;
+  overflow: hidden;
+  @extend .round-border;
+  max-height: 300px;
+  box-shadow: 0 0 1rem rgba(0,0,0,0.2);
+
+  img {
+    width: 100%;
+  }
 }
 
 .sans-serif {

@@ -1,3 +1,1 @@
-<?php
-  extract($displayData);
-?>
+<?php include 'content.news.php';

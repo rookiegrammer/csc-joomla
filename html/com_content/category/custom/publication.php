@@ -22,6 +22,7 @@
 <?php endif; ?>
 
 <?php
+  $layout->csc_item_schema = 'PublicationIssue';
   $layout->list = &$this->intro_items;
   include csc_display('list', 'publication-featured'); ?>
 

@@ -70,10 +70,10 @@ function get_link($article) {
   $base = JURI::base(true);
   $path = $base.'/templates/'.$app->getTemplate().'/';
 
-  $sliders = get_content_from_category('slide', ['id', 'title', 'introtext', 'catid', 'fulltext', 'language'] );
+  $sliders = get_content_from_category('slide', ['id', 'title', 'introtext', 'catid', 'fulltext', 'language', 'images'] );
   $about_article = get_article_with_alias('about');
 
-  $news = get_content_from_category('news', ['id', 'title', 'introtext', 'catid', 'fulltext', 'language'], 12);
+  $news = get_content_from_category('news', ['id', 'title', 'introtext', 'catid', 'fulltext', 'language', 'images'], 12);
   $quicks = get_content_from_category('page-quick', ['id', 'title', 'introtext', 'catid', 'fulltext', 'language', 'alias', 'note'], 3);
 
   $events = get_events(['id', 'title', 'introtext', 'catid', 'fulltext', 'language', 'publish_down'], 3);
@@ -93,11 +93,13 @@ function get_link($article) {
   <div class="carousel-inner">
     <?php
       $sliders_begin = true;
-      foreach ($sliders as $update) :?>
+      foreach ($sliders as $update) :
+        $images = json_decode($update->images);
+        ?>
 
       <div class="carousel-item<?= $sliders_begin ? ' active' : '' ?>">
         <a href="<?= get_link($update) ?>">
-          <img class="d-block h-100 m-auto" src="<?= $path ?>img/placeholder.jpg" alt="Image">
+          <img class="d-block h-100 m-auto" src="<?= $images->image_intro ?>" alt="<?= $images->image_intro_alt ?>">
           <div class="carousel-text-block">
             <div class="carousel-text-wrap">
               <div class="carousel-text-overlay">
@@ -181,7 +183,7 @@ function get_link($article) {
       if (!empty($news)) :
       foreach ($news as $news_each) : ?>
         <div class="col-3">
-          <a class="btn btn-feature" href="<?= get_link($news_each) ?>">
+          <a class="btn btn-feature" href="<?= get_link($news_each) ?>" style="background-image: url(<?= json_decode($news_each->images)->image_intro ?>)">
             <span class="gradient-overlay"></span>
             <h5 class="gradient-title m-0 text-white p-2 font-weight-bold">
               <?= $news_each->title ?>
