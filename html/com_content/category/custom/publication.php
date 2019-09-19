@@ -1,4 +1,9 @@
 <div class="blog<?php echo $this->pageclass_sfx; ?> my-4" itemscope itemtype="https://schema.org/<?= $this->csc_disp_schema ?>">
+  <?php if ($this->params->get('show_page_heading')) : ?>
+		<div class="page-header">
+			<h1 class="text-center"> <?php echo $this->escape($this->params->get('page_heading')); ?> </h1>
+		</div>
+	<?php endif; ?>
 
 <?php if ($this->params->get('show_category_title', 1) or $this->params->get('page_subheading')) : ?>
   <h2> <?php echo $this->escape($this->params->get('page_subheading')); ?>

@@ -131,10 +131,11 @@ function get_link($article) {
   </a>
 </div>
 <?php endif; ?>
-<div class="container my-5">
-  <h3 class="text-center text-primary" style="font-size: 1.8rem">
+<div class="container my-5 text-center">
+  <h3 class="text-primary mb-4" style="font-size: 1.8rem">
     <?= $this->params->get('mission') ?>
   </h3>
+  <a href="#about"><span class="hoverline">Learn More</span><br><span class="h3"><i class="fas fa-chevron-down"></i></span></a>
 </div>
 
 <div class="py-5">
@@ -304,10 +305,7 @@ function get_link($article) {
   </div>
 </div>
 <div class="my-5">
-  <div class="container">
-
-  </div>
-  <div class="mb-4" style="background-image: url(<?= $path ?>img/image1.jpg); background-size: cover; background-position: center;">
+  <div id="about" class="mb-4" style="background-image: url(<?= $path ?>img/image1.jpg); background-size: cover; background-position: center;">
       <div style="background-color: rgba(255,255,255,0.6); color: black; text-shadow: 0 0 10px #ffffff;">
         <div class="container py-5">
           <h3 class="text-primary pb-3" style="color: inherit !important; font-size: 1.5rem">

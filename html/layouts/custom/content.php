@@ -1,2 +1,1 @@
-Hello<br>
-<?php var_dump($displayData["item"]) ?>
+<?php include 'content.page.php';
