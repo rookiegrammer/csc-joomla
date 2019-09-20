@@ -72,6 +72,7 @@ function get_link($article) {
 
   $sliders = get_content_from_category('slide', ['id', 'title', 'introtext', 'catid', 'fulltext', 'language', 'images'] );
   $about_article = get_article_with_alias('about');
+  $staff_article = get_article_with_alias('staff');
 
   $news = get_content_from_category('news', ['id', 'title', 'introtext', 'catid', 'fulltext', 'language', 'images'], 12);
   $quicks = get_content_from_category('page-quick', ['id', 'title', 'introtext', 'catid', 'fulltext', 'language', 'alias', 'note'], 3);
@@ -131,7 +132,7 @@ function get_link($article) {
   </a>
 </div>
 <?php endif; ?>
-<div class="container my-5 text-center">
+<div class="container mt-5 text-center">
   <h3 class="text-primary mb-4" style="font-size: 1.8rem">
     <?= $this->params->get('mission') ?>
   </h3>

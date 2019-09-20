@@ -1,17 +1,17 @@
 <div class="blog<?php echo $this->pageclass_sfx; ?> my-4" itemscope itemtype="https://schema.org/<?= $this->csc_disp_schema ?>">
   <?php if ($this->params->get('show_page_heading')) : ?>
-		<div class="page-header">
+		<div class="page-header mb-3">
 			<h1 class="text-center"> <?php echo $this->escape($this->params->get('page_heading')); ?> </h1>
+
+      <?php if ($this->params->get('show_category_title', 1) or $this->params->get('page_subheading')) : ?>
+        <h2> <?php echo $this->escape($this->params->get('page_subheading')); ?>
+          <?php if ($this->params->get('show_category_title')) : ?>
+            <span class="subheading-category"><?php echo $this->category->title; ?></span>
+          <?php endif; ?>
+        </h2>
+      <?php endif; ?>
 		</div>
 	<?php endif; ?>
-
-<?php if ($this->params->get('show_category_title', 1) or $this->params->get('page_subheading')) : ?>
-  <h2> <?php echo $this->escape($this->params->get('page_subheading')); ?>
-    <?php if ($this->params->get('show_category_title')) : ?>
-      <span class="subheading-category"><?php echo $this->category->title; ?></span>
-    <?php endif; ?>
-  </h2>
-<?php endif; ?>
 
 <?php if ($beforeDisplayContent || $afterDisplayContent || $this->params->get('show_description', 1) || $this->params->def('show_description_image', 1)) : ?>
   <div class="category-desc clearfix">
@@ -29,7 +29,9 @@
 <?php
   $layout->csc_item_schema = 'PublicationIssue';
   $layout->list = &$this->intro_items;
-  include csc_display('list', 'publication-featured'); ?>
+  include csc_display('list', 'publication-featured');
+  if ($layout->list) echo '<hr>';
+  ?>
 
 <?php
   $layout->list = &$this->lead_items;

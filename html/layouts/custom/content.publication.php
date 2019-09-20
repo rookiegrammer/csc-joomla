@@ -12,13 +12,16 @@
         <img src="<?= $images->image_intro ?>" alt="<?= $images->image_intro_alt ?>">
       </a>
     </div>
-    <?php if ($images->image_fulltext) : ?>
-      <a href="<?= $images->image_fulltext ?>" data-toggle="lightbox" data-gallery="gallery" data-title="<?= $images->image_fulltext_alt ?>" data-footer="<?= $images->image_fulltext_caption ?>" >
-      </a>
-    <?php endif; ?>
+
   <?php endif; ?>
   <div class="col">
     <h1 class="title mb-0"><?= $item->title ?></h1>
+    <div>
+    <?php if ($images->image_fulltext) : ?>
+      <a href="<?= $images->image_fulltext ?>" data-toggle="lightbox" data-gallery="gallery" data-title="<?= $images->image_fulltext_alt ?>" data-footer="<?= $images->image_fulltext_caption ?>" >Show Table of Contents
+      </a>
+    <?php endif; ?>
+  </div>
     <?php if ($meta->author) : ?>
     <div class="credits font-weight-bold mb-3" style="opacity:0.7">
       By <?= $meta->author ?>

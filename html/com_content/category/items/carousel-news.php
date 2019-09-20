@@ -1,8 +1,10 @@
 <?php $date = strtotime($this->item->publish_down);
       $link = JRoute::_(ContentHelperRoute::getArticleRoute($this->item->id,
-                  $this->item->catid, $this->item->language)) ?>
+                  $this->item->catid, $this->item->language));
+      $images = json_decode($this->item->images); $introImage = $images->image_intro;
+                  ?>
 <a href="<?= $link ?>">
-  <img class="d-block h-100 m-auto" src="<?= $path ?>img/placeholder.jpg" alt="Image">
+  <img class="d-block h-100 m-auto" src="<?= $images->image_intro ?>" alt="<?= $images->image_alt ?>">
   <div class="carousel-text-block">
     <div class="carousel-text-wrap">
       <div class="carousel-text-overlay">
