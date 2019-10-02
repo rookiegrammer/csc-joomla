@@ -82,4 +82,48 @@ class plgContentCsc_headstart extends JPlugin {
     $category->rebuildPath($category->id);
 
   }
+
+  function get_category_of_item($id) {
+    $db = JFactory::getDbo();
+
+    $query = $db->getQuery(true);
+    $subQuery = $db->getQuery(true);
+
+    $subQuery ->select('catid')
+           ->from($db->quoteName('#__content'))
+           ->where( $db->quoteName('id') . ' = '.$id);
+
+    $query ->select('path')
+           	->from($db->quoteName('#__categories'))
+           	->where($db->quoteName('id') . ' IN (' . $subQuery . ')');
+
+
+    $db->setQuery($query);
+    return preg_replace('/\/.+$/', '', $db->loadObjectList()[0]->path);
+  }
+
+  function onContentPrepareForm($form, $data)
+	{
+		$app    = JFactory::getApplication();
+		$option = $app->input->get('option');
+
+    if (!$app->isClient('administrator') || $app->input->get('layout') != 'edit') return;
+
+		if ($option == 'com_content') {
+      $path = __DIR__ . '/forms';
+      $id = $app->input->getInt('id');
+      $catg = $id ? trim($this->get_category_of_item($id)) : '';
+      JForm::addFormPath($path);
+      if ( !$id )
+          $form->loadFile('csc', false);
+      else if ( file_exists($path.'/csc_'.$catg.'.xml') )
+          $form->loadFile('csc_'.$catg, false);
+      else
+          $form->loadFile('csc_', false);
+
+      return true;
+		}
+
+		return true;
+	}
 }

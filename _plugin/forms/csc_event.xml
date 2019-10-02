@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+	<fields name="attribs">
+		<fieldset name="custom" label="Event Options">
+			<field
+				name="csc_location"
+				type="text"
+				label="Location"
+				filter="STRING"
+			/>
+      <field
+        name="csc_image"
+        type="media"
+        label="Event Image"
+        description="Choose Cover"/>
+		</fieldset>
+	</fields>
+</form>

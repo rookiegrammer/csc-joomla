@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+	<fields name="attribs">
+		<fieldset name="custom" label="Publication">
+			<field
+				name="csc_alt_titles"
+				type="text"
+				label="Alternative Titles"
+			/>
+      <field
+        name="csc_image"
+        type="file"
+        label="Cover Image"
+        description="Choose Cover"
+        accept="image/*" />
+      <field
+        name="csc_pdf_preview"
+        type="file"
+        label="PDF Preview"
+        description="Choose PDF"
+        accept="application/pdf" />
+      <field
+        name="csc_toc"
+        type="editor"
+        label="Table of Contents"
+        description="Write Table of Contents here."/>
+		</fieldset>
+	</fields>
+</form>
