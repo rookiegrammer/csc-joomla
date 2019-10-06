@@ -7,12 +7,21 @@
 				type="text"
 				label="Location"
 				filter="STRING"
+				description="Location of Event."
+			/>
+			<field
+				name=""
+				type="text"
+				label="Date"
+				readonly="true"
+				default="- Finish Publishing (Publishing) -"
+				description="Event date based on Finish Publishing Date."
 			/>
       <field
         name="csc_image"
         type="media"
         label="Event Image"
-        description="Choose Cover"/>
+        description="Cover Image of Event."/>
 		</fieldset>
 	</fields>
 </form>

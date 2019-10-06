@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+	<fields name="attribs">
+		<fieldset name="custom" label="Quick Options">
+			<field
+				name="csc_fa_icon_class"
+				type="text"
+				label="Font Awesome Icon Class"
+				filter="STRING"
+				description='&lt;br&gt;'
+			/>
+		</fieldset>
+	</fields>
+</form>

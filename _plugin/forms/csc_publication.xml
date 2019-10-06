@@ -9,16 +9,15 @@
 			/>
       <field
         name="csc_image"
-        type="file"
+        type="media"
         label="Cover Image"
         description="Choose Cover"
         accept="image/*" />
       <field
         name="csc_pdf_preview"
-        type="file"
-        label="PDF Preview"
-        description="Choose PDF"
-        accept="application/pdf" />
+        type="url"
+        label="Google Drive PDF View Link"
+        description="After enabling sharing for the pdf in Google Drive, add view link here." />
       <field
         name="csc_toc"
         type="editor"

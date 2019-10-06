@@ -75,7 +75,7 @@ function get_link($article) {
   $staff_article = get_article_with_alias('staff');
 
   $news = get_content_from_category('news', ['id', 'title', 'introtext', 'catid', 'fulltext', 'language', 'images'], 12);
-  $quicks = get_content_from_category('page-quick', ['id', 'title', 'introtext', 'catid', 'fulltext', 'language', 'alias', 'note'], 3);
+  $quicks = get_content_from_category('page-quick', ['id', 'title', 'introtext', 'catid', 'fulltext', 'language', 'alias', 'attribs'], 3);
 
   $events = get_events(['id', 'title', 'introtext', 'catid', 'fulltext', 'language', 'publish_down'], 3);
 ?>
@@ -149,31 +149,13 @@ function get_link($article) {
       foreach ($quicks as $quicklink) : ?>
         <div class="col-4">
           <a class="d-block w-auto text-center p-3 btn btn-primary btn-round-border btn-primary-accent btn-hovershadow" href="<?= get_link($quicklink) ?>">
-            <i class="fas fa-<?= $quicklink->note ?> d-block mb-2" style="font-size: 2rem"></i>
+            <i class="fa fa-<?= json_decode($quicklink->attribs)->csc_fa_icon_class ?> d-block mb-2" style="font-size: 2rem"></i>
             <?= $quicklink->title ?>
           </a>
         </div>
       <?php
       endforeach;
       ?>
-      <!-- <div class="col-4">
-        <a class="d-block w-auto text-center p-3 btn btn-primary btn-round-border btn-primary-accent btn-hovershadow" href="#">
-          <i class="fas fa-flask d-block mb-2" style="font-size: 2rem"></i>
-          Research Activities
-        </a>
-      </div>
-      <div class="col-4">
-        <a class="d-block w-auto text-center p-3 btn btn-primary btn-round-border btn-primary-accent btn-hovershadow" href="#">
-          <i class="fas fa-hands-helping d-block mb-2" style="font-size: 2rem"></i>
-          Research Affiliation Program
-        </a>
-      </div>
-      <div class="col-4">
-        <a class="d-block w-auto text-center p-3 btn btn-primary btn-round-border btn-primary-accent btn-hovershadow" href="#">
-          <i class="fas fa-info-circle d-block mb-2" style="font-size: 2rem"></i>
-          Other Program &amp; Services
-        </a>
-      </div> -->
     </div>
   </div>
   <?php endif; ?>
@@ -251,35 +233,6 @@ function get_link($article) {
               $e_first = false;
               endforeach; ?>
           <?php endif; ?>
-          <!-- <a class="row csc-date-event" href="#">
-            <div class="csc-date-prewrap position-relative">
-              <div class="csc-date-circle position-relative">
-                <div class="csc-date-text text-white text-center">
-                  <div class="csc-date-day">01</div>
-                </div>
-              </div>
-            </div>
-            <div class="pl-3 pt-2">
-              <h5 class="font-weight-bold">
-                New Year
-              </h5>
-
-            </div>
-          </a>
-          <a class="row csc-date-event" href="#">
-            <div class="csc-date-prewrap position-relative">
-              <div class="csc-date-circle position-relative">
-                <div class="csc-date-text text-white text-center">
-                  <div class="csc-date-day">06</div>
-                </div>
-              </div>
-            </div>
-            <div class="pl-3 pt-2">
-              <h5 class="font-weight-bold">
-                Continuation of Services
-              </h5>
-            </div>
-          </a> -->
         </div>
         <div class="text-right mt-3">
           <a class="link-boss" href="#">
