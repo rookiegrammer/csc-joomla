@@ -28,4 +28,46 @@
     <title>Crew</title>
     <description></description>
   </category>
+  
+  <!-- Publication sub-categories -->
+  <category alias="tcr">
+    <title>The Cordillera Review</title>
+    <description></description>
+    <parent-alias>publication</parent-alias>
+  </category>
+  <category alias="working-paper">
+    <title>Working Papers</title>
+    <description></description>
+    <parent-alias>publication</parent-alias>
+  </category>
+  <category alias="issue-paper">
+    <title>Issue Papers</title>
+    <description></description>
+    <parent-alias>publication</parent-alias>
+  </category>
+  <category alias="monograph">
+    <title>Monographs</title>
+    <description></description>
+    <parent-alias>publication</parent-alias>
+  </category>
+  <category alias="conference-proceeding">
+    <title>Conference Proceedings</title>
+    <description></description>
+    <parent-alias>publication</parent-alias>
+  </category>
+  <category alias="research-report">
+    <title>Research Reports</title>
+    <description></description>
+    <parent-alias>publication</parent-alias>
+  </category>
+  <category alias="special-publication">
+    <title>Special Publications</title>
+    <description></description>
+    <parent-alias>publication</parent-alias>
+  </category>
+  <category alias="downloadable-publication">
+    <title>Downloadable Publications</title>
+    <description></description>
+    <parent-alias>publication</parent-alias>
+  </category>
 </categories>

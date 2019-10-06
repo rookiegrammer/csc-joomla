@@ -12,9 +12,11 @@ class plgContentCsc_headstart extends JPlugin {
       $alias = $category->attributes()->alias;
       $title = (string) $category->{'title'};
       $desc = (string) $category->{'description'};
-
+      $parent_alias = (string) $category->{'parent-alias'};
+      $parent_id = $this->get_category_id_from_alias($parent_alias);
+      
       if ($this->checkCategory($alias))
-        $this->addCategory($title, $desc, $alias);
+        $this->addCategory($title, $desc, $alias, $parent_id ? $parent_id : 1);
     }
 
     return true;
@@ -60,6 +62,7 @@ class plgContentCsc_headstart extends JPlugin {
     $category->metadata = '{"page_title":"","author":"","robots":""}';
     $category->language = '*';
     $category->alias = $alias;
+    $category->parent_id = $parent_id;
 
     // Set the location in the tree
     $category->setLocation($parent_id, 'last-child');
@@ -100,6 +103,12 @@ class plgContentCsc_headstart extends JPlugin {
 
     $db->setQuery($query);
     return preg_replace('/\/.+$/', '', $db->loadObjectList()[0]->path);
+  }
+  
+  function get_category_id_from_alias($alias) {
+    $db = JFactory::getDbo();
+    $db->setQuery("SELECT cat.id FROM #__categories cat WHERE cat.alias='$alias'");
+    return $db->loadResult();
   }
 
   function onContentPrepareForm($form, $data)

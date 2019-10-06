@@ -42,8 +42,16 @@ function csc_display($disp, $item_style) {
 
 JFactory::getApplication()->set('blog_item_style', '');
 
-if (file_exists(realpath(__DIR__).'/custom/'.$this->category->alias.'.php')) {
-	include realpath(__DIR__).'/custom/'.$this->category->alias.'.php';
-} else {
-	include realpath(__DIR__).'/custom/default.php';
+//style category based on its parent if no style exists for it
+$category = $this->category;
+$path = realpath(__DIR__).'/custom/'.$category->alias.'.php';
+
+while(!file_exists($path) && $category->parent_id!='root'){
+    $category = $category->getParent();
+    $path = realpath(__DIR__).'/custom/'.$category->alias.'.php';
 }
+if(!file_exists($path)){
+    $path = realpath(__DIR__).'/custom/default.php';
+}
+
+include $path;
