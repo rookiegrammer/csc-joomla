@@ -44,7 +44,7 @@
                </button>
              </div>
              <div class="modal-body">
-               <iframe src="<?= preg_replace('/view\?.+$/','preview', $pdf) ?>" style="width: 100%; height: 75vh"></iframe>
+               <iframe src="<?= preg_replace('/view\?.+$/','preview', $pdf) ?>" style="width: 100%; height: 75vh; border: none"></iframe>
              </div>
            </div>
          </div>

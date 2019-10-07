@@ -6,6 +6,7 @@
 	<description>This is the headstart plugin for the UPB Cordillera Studies Center Website.</description>
   <version>1-1.0</version>
   <files>
+    <folder>forms</folder>
     <filename plugin="csc_headstart">csc_headstart.php</filename>
     <filename>csc_categories.xml</filename>
     <filename>index.html</filename>
