@@ -6,13 +6,28 @@
 				name="csc_alt_titles"
 				type="text"
 				label="Alternative Titles"
+				filter="STRING"
 			/>
-      <field
-        name="csc_image"
-        type="media"
-        label="Cover Image"
-        description="Choose Cover"
-        accept="image/*" />
+			<field
+				name="csc_publication_author"
+				type="text"
+				label="Author"
+				filter="STRING"
+			/>
+			<field
+				name=""
+				type="text"
+				label="Cover Image"
+				readonly="true"
+				default="- Intro Image (Images and Links) -"
+			/>
+			<field
+				name=""
+				type="text"
+				label="Release Date"
+				readonly="true"
+				default="- Create Date (Publishing) -"
+			/>
       <field
         name="csc_pdf_preview"
         type="url"

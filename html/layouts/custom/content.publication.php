@@ -16,20 +16,20 @@
   <?php endif; ?>
   <div class="col">
     <h1 class="title mb-0"><?= $item->title ?></h1>
-    <?php if ($meta->author) : ?>
+    <?php $author = $item->params->get('csc_publication_author'); if ($author) : ?>
     <div class="credits font-weight-bold mb-2" style="opacity:0.7">
-      By <?= $meta->author ?>
+      By <?= $author ?>
     </div>
     <?php endif; ?>
-    <?php if ($item->metadesc) : ?>
-    <small class="description font-italic d-block mb-4">
-      <?= $item->metadesc ?>
+    <?php $toc = $item->params->get('csc_toc'); if ($toc) : ?>
+    <small class="appendix font-italic d-block mb-4">
+      <?= $toc ?>
     </small>
     <?php endif; ?>
     <?php $pdf = $item->params->get('csc_pdf_preview'); if ($pdf) :
       ?>
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CSCPDFCenter">
+        <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target="#CSCPDFCenter">
          Preview
         </button>
 

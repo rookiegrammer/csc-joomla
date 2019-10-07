@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+	<fields name="attribs">
+		<fieldset name="custom" label="Staff Detail">
+			<field
+        name="csc_profile"
+        type="media"
+        label="Square Profile Image"
+      />
+			<field
+				name="csc_title_name"
+				type="text"
+				label="Title"
+				filter="STRING"
+			/>
+			<field
+				name="csc_first_name"
+				type="text"
+				label="First Name"
+				filter="STRING"
+			/>
+			<field
+				name="csc_second_name"
+				type="text"
+				label="Second Name"
+				filter="STRING"
+			/>
+			<field
+				name=""
+				type="text"
+				label="Last Name"
+				readonly="true"
+				default="- (Article Title) -"
+			/>
+			<field
+				name="csc_name_suffix"
+				type="text"
+				label="Name Suffix"
+				filter="STRING"
+			/>
+			<field
+				name="csc_position"
+				type="text"
+				label="Position"
+				filter="STRING"
+			/>
+		</fieldset>
+	</fields>
+</form>

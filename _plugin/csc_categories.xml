@@ -25,10 +25,10 @@
     <description></description>
   </category>
   <category alias="staff">
-    <title>Crew</title>
+    <title>Staff</title>
     <description></description>
   </category>
-  
+
   <!-- Publication sub-categories -->
   <category alias="tcr">
     <title>The Cordillera Review</title>
