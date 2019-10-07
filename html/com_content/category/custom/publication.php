@@ -1,5 +1,7 @@
-<div class="blog<?php echo $this->pageclass_sfx; ?> my-4" itemscope itemtype="https://schema.org/<?= $this->csc_disp_schema ?>">
-  <?php if ($this->params->get('show_page_heading')) : ?>
+<div class="blog<?php echo $this->pageclass_sfx; ?> my-0" itemscope itemtype="https://schema.org/<?= $this->csc_disp_schema?> ">
+<?php /*
+
+<?php if ($this->params->get('show_page_heading')) : ?>
 		<div class="page-header mb-3">
 			<h1 class="text-center"> <?php echo $this->escape($this->params->get('page_heading')); ?> </h1>
 
@@ -26,24 +28,55 @@
   </div>
 <?php endif; ?>
 
+*/?>
 
+<?php if ($this->params->get('show_category_title', 1)): ?>
+<h2><?=$this->category->title?></h2>
+<?php endif; ?>
+
+<?php if ($this->params->get('show_description', 1)): ?>
+<p><?=$this->category->description?></p>
+<?php endif; ?>
+<hr/>
+
+<?php
+    $withImage = array();
+    $withoutImage = array();
+    foreach ($this->children[$this->category->id] as $id => $child){
+        if ($child->getParams()['image'])
+            array_push($withImage, $child);
+        else
+            array_push($withoutImage, $child);
+    }
+?>
 <?php if ($this->maxLevel != 0 && count($this->children[$this->category->id]) > 0) : ?>
-    <div class="card-columns ">
     
-	<?php foreach ($this->children[$this->category->id] as $id => $child) : ?>
-        <div class="card category-links" data-target="#category<?=$id?>">
-            <?php if ($child->getParams()['image']):?>
-                <img src="<?=$child->getParams()['image']?>" class="card-img-top" alt="<?=$child->getParams()['image_intro_alt']?>">
-            <?php endif?>
-                <div class="card-body">
-                  <h5 class="card-title"><?=$child->title?></h5>
-                    <p class="card-text"><?=$child->description?></p>
-                  <a href="<?=JRoute::_(ContentHelperRoute::getCategoryRoute($child->slug))?>" class="stretched-link"></a>
+    <?php if (count($withImage)) :?>
+        <div class="card-columns ">
+            <?php foreach ($withImage as $id => $child) : ?>
+                <div class="card category-links" style="max-width:300px" data-target="#category<?=$id?>">
+                    <img src="<?=$child->getParams()['image']?>" class="card-img-top" alt="<?=$child->getParams()['image_intro_alt']?>">
+                    <div class="card-body align-middle p-3 bg-primary">
+                      <h6 class="card-title text-center my-auto text-white"><?=$child->title?></h6>
+                      <a href="<?=JRoute::_(ContentHelperRoute::getCategoryRoute($child->slug))?>" class="stretched-link"></a>
+                    </div>
                 </div>
+            <?php endforeach; ?>
         </div>
-	<?php endforeach; ?>
-
-    </div>
+    <?php endif?>
+    <?php if (count($withoutImage)): ?>
+        <div class="card-columns ">
+            <?php foreach ($withoutImage as $id=>$child) : ?>
+                <div class="card category-links " style="max-width:300px" data-target="#category<?=$id?>">
+                    <div class="card-body align-middle p-3 bg-primary">
+                      <h6 class="card-title text-center my-auto text-white "><?=$child->title?></h6>
+                      <a href="<?=JRoute::_(ContentHelperRoute::getCategoryRoute($child->slug))?>" class="stretched-link"></a>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    <?php endif ?>
+    <hr/>   
 <?php endif;?>
 
 
@@ -51,11 +84,11 @@
 jQuery(document).ready(function ($) {
     $( ".category-links" ).hover(
         function() {
-            $(this).addClass("border border-primary");
+            $(this).addClass("shadow");
             //$($(this).data("target")).collapse('show');
         },
         function() {
-            $(this).removeClass("border border-primary");
+            $(this).removeClass("shadow");
             //$($(this).data("target")).collapse('hide');
         }
     );
@@ -63,6 +96,11 @@ jQuery(document).ready(function ($) {
 
 </script>
 
+<?php if ($this->category->parent_id!='root' && empty($this->lead_items) && empty($this->link_items) && empty($this->intro_items)) : ?>
+    <?php if ($this->params->get('show_no_articles', 1)) : ?>
+        <p><?php echo JText::_('COM_CONTENT_NO_ARTICLES'); ?></p>
+    <?php endif; ?>
+<?php endif; ?>
 
 <?php
   $layout->csc_item_schema = 'PublicationIssue';
