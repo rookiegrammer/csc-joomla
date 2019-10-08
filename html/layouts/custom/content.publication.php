@@ -3,6 +3,8 @@
   extract($displayData);
   $images = json_decode($item->images);
   $meta = json_decode($item->metadata);
+  $price = $item->params->get('csc_publication_price');
+  $isbn = $item->params->get('csc_publication_isbn');
 ?>
 
 <div class="row">
@@ -21,6 +23,16 @@
       By <?= $author ?>
     </div>
     <?php endif; ?>
+    <div>
+      <?php if ($price) : ?>
+        <strong><?= $price ?></strong>
+      <?php else : ?>
+        FREE
+      <? endif; ?>
+      <?php if ($isbn) : ?>
+         | <span>ISBN <?= $isbn ?></span>
+      <? endif; ?>
+    </div>
     <?php $toc = $item->params->get('csc_toc'); if ($toc) : ?>
     <small class="appendix font-italic d-block mb-4">
       <?= $toc ?>

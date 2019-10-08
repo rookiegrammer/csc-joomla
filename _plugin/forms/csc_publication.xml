@@ -28,6 +28,18 @@
 				readonly="true"
 				default="- Create Date (Publishing) -"
 			/>
+			<field
+				name="csc_publication_price"
+				type="text"
+				label="Price"
+				filter="STRING"
+			/>
+			<field
+				name="csc_publication_isbn"
+				type="text"
+				label="ISBN"
+				filter="STRING"
+			/>
       <field
         name="csc_pdf_preview"
         type="url"

@@ -2,7 +2,9 @@
 $images = json_decode($this->item->images); $introImage = $images->image_intro;
 $date = strtotime($this->item->publish_up);
 $link = JRoute::_(ContentHelperRoute::getArticleRoute($this->item->id,
-                  $this->item->catid, $this->item->language)) ?>
+                  $this->item->catid, $this->item->language));
+$attribs = json_decode($this->item->attribs);
+                  ?>
 <div class="row mb-4">
   <?php if ($introImage) : ?>
     <div class="col-12 pb-3">
@@ -16,5 +18,10 @@ $link = JRoute::_(ContentHelperRoute::getArticleRoute($this->item->id,
     <div itemprop="startDate" content="<?= (new DateTime($this->item->publish_down))->format('c') ?>">
       <?= $this->item->publish_up == '0000-00-00 00:00:00' ? '' : date('F Y', $date) ?>
     </div>
+    <?php if ($attribs->csc_publication_price) : ?>
+    <div>
+      <strong><?= $attribs->csc_publication_price ?></strong>
+    </div>
+    <?php endif; ?>
   </div>
 </div>

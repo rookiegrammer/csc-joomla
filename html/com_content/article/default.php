@@ -26,5 +26,15 @@ $user = JFactory::getUser();
 
 $package = array('item'=>$item, 'user'=>$user);
 
+$db = JFactory::getDbo();
+$query = $db->getQuery(true);
+
+$query ->select('path')
+        ->from($db->quoteName('#__categories'))
+        ->where($db->quoteName('alias') . ' = ' . $db->quote($this->item->category_alias));
+$db->setQuery($query);
+$list = $db->loadObjectList();
+$category = empty($list) ? array() : array(preg_replace('/\/.+$/', '', $list[0]->path));
+
 // $this->item->category_alias
-echo JLayoutHelper::render('custom.content', $package, '', array('suffixes'=>array($this->item->category_alias)));
+echo JLayoutHelper::render('custom.content', $package, '', array('suffixes'=>$category));
