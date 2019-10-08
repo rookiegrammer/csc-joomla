@@ -1,35 +1,25 @@
 <div class="blog<?php echo $this->pageclass_sfx; ?>">
 
-<?php if ($this->params->get('show_category_title', 1) or $this->params->get('page_subheading')) : ?>
-  <h2> <?php echo $this->escape($this->params->get('page_subheading')); ?>
-    <?php if ($this->params->get('show_category_title')) : ?>
-      <span class="subheading-category"><?php echo $this->category->title; ?></span>
-    <?php endif; ?>
-  </h2>
+  <h1 class="title page-title sans-serif font-weight-bold">
+    <?php echo $this->category->title; ?>
+  </h1>
+
+<?php if ($this->intro_items) : ?>
+<div class="p-3">
+  <?php
+    $layout->list = $this->intro_items;
+    $layout->csc_item_schema = 'NewsArticle';
+    include csc_display('carousel', 'carousel-news'); ?>
+</div>
 <?php endif; ?>
 
-<?php if ($beforeDisplayContent || $afterDisplayContent || $this->params->get('show_description', 1) || $this->params->def('show_description_image', 1)) : ?>
-  <div class="category-desc clearfix">
-    <?php if ($this->params->get('show_description_image') && $this->category->getParams()->get('image')) : ?>
-      <img src="<?php echo $this->category->getParams()->get('image'); ?>" alt="<?php echo htmlspecialchars($this->category->getParams()->get('image_alt'), ENT_COMPAT, 'UTF-8'); ?>"/>
-    <?php endif; ?>
-    <?php echo $beforeDisplayContent; ?>
-    <?php if ($this->params->get('show_description') && $this->category->description) : ?>
-      <?php echo JHtml::_('content.prepare', $this->category->description, '', 'com_content.category'); ?>
-    <?php endif; ?>
-    <?php echo $afterDisplayContent; ?>
-  </div>
-<?php endif; ?>
 
-<?php
-  $layout->list = $this->intro_items;
-  $layout->csc_item_schema = 'NewsArticle';
-  include csc_display('carousel', 'carousel-news'); ?>
-
-<?php
-  $layout->list = $this->lead_items;
-  $layout->csc_item_schema = 'NewsArticle';
-  include csc_display('list', 'event'); ?>
+<div>
+  <?php
+    $layout->list = $this->lead_items;
+    $layout->csc_item_schema = 'NewsArticle';
+    include csc_display('list', 'list-item'); ?>
+</div>
 
 <?php if ($this->maxLevel != 0 && !empty($this->children[$this->category->id])) : ?>
   <div class="cat-children">
@@ -45,5 +35,16 @@
     <?php endif; ?>
     <?php echo $this->pagination->getPagesLinks(); ?> </div>
 <?php endif; ?>
+
+
+  <hr>
+
+  <div class="category-desc clearfix">
+    <?php echo $beforeDisplayContent; ?>
+    <?php if ($this->params->get('show_description') && $this->category->description) : ?>
+      <?php echo JHtml::_('content.prepare', $this->category->description, '', 'com_content.category'); ?>
+    <?php endif; ?>
+    <?php echo $afterDisplayContent; ?>
+  </div>
 
 </div>

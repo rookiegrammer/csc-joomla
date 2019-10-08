@@ -1,29 +1,29 @@
 <div class="blog<?php echo $this->pageclass_sfx; ?>">
 
-  <h1 class="title page-title sans-serif font-weight-bold">
-    <?php echo $this->category->title; ?>
-  </h1>
+<h1 class="title page-title sans-serif font-weight-bold">
+  <?php echo $this->category->title; ?>
+</h1>
 
-  <div class="category-desc clearfix">
-    <?php echo $beforeDisplayContent; ?>
-    <?php if ($this->params->get('show_description') && $this->category->description) : ?>
-      <?php echo JHtml::_('content.prepare', $this->category->description, '', 'com_content.category'); ?>
-    <?php endif; ?>
-    <?php echo $afterDisplayContent; ?>
-  </div>
+<div class="category-desc clearfix">
+  <?php echo $beforeDisplayContent; ?>
+  <?php if ($this->params->get('show_description') && $this->category->description) : ?>
+    <?php echo JHtml::_('content.prepare', $this->category->description, '', 'com_content.category'); ?>
+  <?php endif; ?>
+  <?php echo $afterDisplayContent; ?>
+</div>
 
 <hr>
 
 <?php
 
   $layout->list = $this->lead_items;
-  $layout->csc_item_schema = 'Event';
-  include csc_display('list', 'event'); ?>
+  $layout->csc_item_schema = 'Person';
+  include csc_display('list', 'profile'); ?>
 
 <?php
   $layout->list = $this->intro_items;
-  $layout->csc_item_schema = 'Event';
-  include csc_display('list', 'event'); ?>
+  $layout->csc_item_schema = 'Person';
+  include csc_display('list', 'profile'); ?>
 
 
 

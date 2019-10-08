@@ -49,6 +49,18 @@ function get_events($fields = null, $limit = 0) {
   return $db->loadObjectList();
 }
 
+function get_category_with_alias($alias, $fields = null) {
+  $db = JFactory::getDbo();
+  $query = $db->getQuery(true);
+
+  $query ->select(empty($fields) ? '*' : $db->quoteName($fields))
+        	->from($db->quoteName('#__categories'))
+        	->where($db->quoteName('alias') . ' = ' . $db->quote($alias));
+  $db->setQuery($query);
+  $list = $db->loadObjectList();
+  return empty($list) ? null : $list[0];
+}
+
 function get_article_with_alias($alias, $fields = null) {
   $db = JFactory::getDbo();
 
@@ -62,17 +74,24 @@ function get_article_with_alias($alias, $fields = null) {
   return empty($list) ? null : $list[0];
 }
 
-function get_link($article) {
+function get_art_link($article) {
   return JRoute::_(ContentHelperRoute::getArticleRoute($article->id,
               $article->catid, $article->language));
+}
+
+function get_cat_link($category) {
+  return JRoute::_(ContentHelperRoute::getCategoryRoute($category->id, $category->language).'&layout=blog');
+}
+
+function get_cat_link_with_alias($category_alias) {
+  return get_cat_link(get_category_with_alias($category_alias, ['id', 'language']));
 }
 
   $base = JURI::base(true);
   $path = $base.'/templates/'.$app->getTemplate().'/';
 
   $sliders = get_content_from_category('slide', ['id', 'title', 'introtext', 'catid', 'fulltext', 'language', 'images'] );
-  $about_article = get_article_with_alias('about');
-  $staff_article = get_article_with_alias('staff');
+  $staff_category = get_category_with_alias('staff', ['id', 'description', 'language']);
 
   $news = get_content_from_category('news', ['id', 'title', 'introtext', 'catid', 'fulltext', 'language', 'images'], 12);
   $quicks = get_content_from_category('page-quick', ['id', 'title', 'introtext', 'catid', 'fulltext', 'language', 'alias', 'attribs'], 3);
@@ -99,13 +118,13 @@ function get_link($article) {
         ?>
 
       <div class="carousel-item<?= $sliders_begin ? ' active' : '' ?>">
-        <a href="<?= get_link($update) ?>">
+        <a href="<?= get_art_link($update) ?>">
           <img class="d-block h-100 m-auto" src="<?= $images->image_intro ?>" alt="<?= $images->image_intro_alt ?>">
           <div class="carousel-text-block">
             <div class="carousel-text-wrap">
               <div class="carousel-text-overlay">
               </div>
-              <div class="carousel-text-title pt-5 pb-3">
+              <div class="carousel-text-title pt-5 pb-3 px-4">
 
                 <h5 class="container mb-0 text-white">
                   <?= $update->title ?>
@@ -148,7 +167,7 @@ function get_link($article) {
       <?php
       foreach ($quicks as $quicklink) : ?>
         <div class="col-4">
-          <a class="d-block w-auto text-center p-3 btn btn-primary btn-round-border btn-primary-accent btn-hovershadow" href="<?= get_link($quicklink) ?>">
+          <a class="d-block w-auto text-center p-3 btn btn-primary btn-round-border btn-primary-accent btn-hovershadow" href="<?= get_art_link($quicklink) ?>">
             <i class="fa fa-<?= json_decode($quicklink->attribs)->csc_fa_icon_class ?> d-block mb-2" style="font-size: 2rem"></i>
             <?= $quicklink->title ?>
           </a>
@@ -167,7 +186,7 @@ function get_link($article) {
       if (!empty($news)) :
       foreach ($news as $news_each) : ?>
         <div class="col-3">
-          <a class="btn btn-feature" href="<?= get_link($news_each) ?>" style="background-image: url(<?= json_decode($news_each->images)->image_intro ?>)">
+          <a class="btn btn-feature" href="<?= get_art_link($news_each) ?>" style="background-image: url(<?= json_decode($news_each->images)->image_intro ?>)">
             <span class="gradient-overlay"></span>
             <h5 class="gradient-title m-0 text-white p-2 font-weight-bold">
               <?= $news_each->title ?>
@@ -182,7 +201,7 @@ function get_link($article) {
       <?php endif; ?>
       </div>
       <div class="text-right mt-3">
-        <a class="link-boss" href="#">
+        <a class="link-boss" href="<?= get_cat_link_with_alias('news') ?>">
           More
           <i class="fas fa-caret-right">
           </i>
@@ -192,7 +211,7 @@ function get_link($article) {
   </div>
   <div class="container mt-5">
     <div class="row mt-4">
-      <div class="col-4">
+      <div class="events col-12 col-md-4">
         <h3>Upcoming</h3>
         <div class="csc-date-rows">
           <?php if (empty($events)) : ?>
@@ -205,7 +224,7 @@ function get_link($article) {
               foreach ($events as $event) :
                 $date = strtotime($event->publish_down);
               ?>
-            <a class="row csc-date-event" href="<?= get_link($event) ?>">
+            <a class="row csc-date-event" href="<?= get_art_link($event) ?>">
               <div class="csc-date-prewrap position-relative">
                 <div class="csc-date-circle <?= $e_first ? 'csc-date-circle-big' : '' ?> position-relative">
                   <div class="csc-date-text text-white text-center">
@@ -217,7 +236,7 @@ function get_link($article) {
                 </div>
               </div>
               <div class="pl-3 pt-2">
-                <h5 class="font-weight-bold">
+                <h5 class="font-weight-bold mt-3 mb-0">
                   <?= $event->title ?>
                 </h5>
                 <p style="font-size: 0.8rem">
@@ -235,7 +254,7 @@ function get_link($article) {
           <?php endif; ?>
         </div>
         <div class="text-right mt-3">
-          <a class="link-boss" href="#">
+          <a class="link-boss" href="<?= get_cat_link_with_alias('event') ?>">
             More
             <i class="fas fa-caret-right"></i>
           </a>
@@ -243,13 +262,13 @@ function get_link($article) {
       </div>
       <div class="col-8">
         <h3>The Staff</h3>
-        <?php if (empty($staff_article)) : ?>
-        <pre>Please create article with alias 'staff'</pre>
+        <?php if (empty($staff_category)) : ?>
+        <pre>Please create category with alias 'staff'</pre>
         <?php else : ?>
-        <?= $staff_article->introtext ?>
+        <?= $staff_category->description ?>
         <div class="text-right mt-3">
-          <a class="link-boss" href="<?= get_link($staff_article) ?>">
-            Learn More
+          <a class="link-boss" href="<?= get_cat_link($staff_category) ?>">
+            View Staff
             <i class="fas fa-caret-right"></i>
           </a>
         </div>
