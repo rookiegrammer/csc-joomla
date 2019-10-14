@@ -2,7 +2,7 @@
 $images = json_decode($this->item->images); $introImage = $images->image_intro;
 $date = strtotime($this->item->publish_up);
 $link = JRoute::_(ContentHelperRoute::getArticleRoute($this->item->id,
-                  $this->item->catid, $this->item->language))
+                  $this->item->catid, $this->item->language));
 
 $attribs = json_decode($this->item->attribs);
                   ?>
@@ -20,14 +20,14 @@ $attribs = json_decode($this->item->attribs);
     </div>
     <h2 class="font-weight-bold"><a href="<?= $link ?>" itemprop="name"><?= $this->item->title ?></a></h2>
     <div>
-      <?php if (isset($attribs->csc_publication_price)) : ?>
+      <?php if ($attribs->csc_publication_price) : ?>
         <strong><?= $attribs->csc_publication_price ?></strong>
       <?php else : ?>
         FREE
-      <? endif; ?>
-      <?php if (isset($attribs->csc_publication_isbn)) : ?>
+      <?php endif; ?>
+      <?php if ($attribs->csc_publication_isbn) : ?>
          | <span>ISBN <?= $attribs->csc_publication_isbn ?></span>
-      <? endif; ?>
+      <?php endif; ?>
     </div>
     <p><?= $this->item->introtext ?></p>
   </div>
