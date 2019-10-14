@@ -18,7 +18,7 @@ $attribs = json_decode($this->item->attribs);
     <div itemprop="startDate" content="<?= (new DateTime($this->item->publish_down))->format('c') ?>">
       <?= $this->item->publish_up == '0000-00-00 00:00:00' ? '' : date('F Y', $date) ?>
     </div>
-    <?php if ($attribs->csc_publication_price) : ?>
+    <?php if (isset($attribs->csc_publication_price)) : ?>
     <div>
       <strong><?= $attribs->csc_publication_price ?></strong>
     </div>

@@ -20,12 +20,12 @@ $attribs = json_decode($this->item->attribs);
     </div>
     <h2 class="font-weight-bold"><a href="<?= $link ?>" itemprop="name"><?= $this->item->title ?></a></h2>
     <div>
-      <?php if ($attribs->csc_publication_price) : ?>
+      <?php if (isset($attribs->csc_publication_price)) : ?>
         <strong><?= $attribs->csc_publication_price ?></strong>
       <?php else : ?>
         FREE
       <? endif; ?>
-      <?php if ($attribs->csc_publication_price) : ?>
+      <?php if (isset($attribs->csc_publication_isbn)) : ?>
          | <span>ISBN <?= $attribs->csc_publication_isbn ?></span>
       <? endif; ?>
     </div>

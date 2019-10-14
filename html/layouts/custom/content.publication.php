@@ -28,10 +28,10 @@
         <strong><?= $price ?></strong>
       <?php else : ?>
         FREE
-      <? endif; ?>
+      <?php endif; ?>
       <?php if ($isbn) : ?>
          | <span>ISBN <?= $isbn ?></span>
-      <? endif; ?>
+      <?php endif; ?>
     </div>
     <?php $toc = $item->params->get('csc_toc'); if ($toc) : ?>
     <small class="appendix font-italic d-block mb-4">
