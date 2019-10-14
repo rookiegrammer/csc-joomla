@@ -26,7 +26,7 @@
 				type="text"
 				label="Release Date"
 				readonly="true"
-				default="- Create Date (Publishing) -"
+				default="- Created Date (Publishing) -"
 			/>
 			<field
 				name="csc_publication_price"
@@ -45,6 +45,12 @@
         type="url"
         label="Google Drive PDF View Link"
         description="After enabling sharing for the pdf in Google Drive, add view link here." />
+			<field
+				name="csc_publication_notices"
+				type="textarea"
+				label="Copyright Note"
+				filter="STRING"
+			/>
       <field
         name="csc_toc"
         type="editor"

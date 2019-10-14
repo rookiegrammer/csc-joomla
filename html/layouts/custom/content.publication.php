@@ -5,8 +5,9 @@
   $meta = json_decode($item->metadata);
   $price = $item->params->get('csc_publication_price');
   $isbn = $item->params->get('csc_publication_isbn');
+  $notice = $item->params->get('csc_publication_notices');
 ?>
-
+<div itemscope="" itemtype="http://schema.org/Book">
 <div class="row">
   <?php if ($images->image_intro) : ?>
     <div class="col-3">
@@ -17,27 +18,44 @@
 
   <?php endif; ?>
   <div class="col">
-    <h1 class="title mb-0"><?= $item->title ?></h1>
-    <?php $author = $item->params->get('csc_publication_author'); if ($author) : ?>
-    <div class="credits font-weight-bold mb-2" style="opacity:0.7">
-      By <?= $author ?>
-    </div>
-    <?php endif; ?>
     <div>
+      <h1 class="title mb-2 d-inline-block" itemprop="name"><?= $item->title ?></h1>
+      <span class="price badge badge-secondary mt-2 ml-2 float-right" style="font-size: 1.2rem">
       <?php if ($price) : ?>
         <strong><?= $price ?></strong>
       <?php else : ?>
         FREE
       <?php endif; ?>
+      </span>
+    </div>
+    <?php $author = $item->params->get('csc_publication_author'); if ($author) : ?>
+    <div class="font-weight-bold mb-4">
+      By
+      <span class="credits" itemprop="author" style="opacity:0.7">
+      <?= $author ?>
+      </span>
+    </div>
+    <?php endif; ?>
+    <div class="mb-2">
+      <?php if ($item->created) : ?>
+        Published
+        <span itemprop="datePublished">
+          <?= $item->created == '0000-00-00 00:00:00' ? 'Indefinite' : JHtml::_('date', $item->created, 'F j, Y') ?>
+        </span>
+      <?php endif; ?>
       <?php if ($isbn) : ?>
-         | <span>ISBN <?= $isbn ?></span>
+         <span itemprop="isbn">ISBN <?= $isbn ?></span>
       <?php endif; ?>
     </div>
     <?php $toc = $item->params->get('csc_toc'); if ($toc) : ?>
-    <small class="appendix font-italic d-block mb-4">
-      <?= $toc ?>
-    </small>
+      <div>
+        <h2 class="h6 font-weight-bold">Table of Contents</h2>
+        <small class="appendix border-left border-primary font-italic d-block mb-4 pl-2">
+          <?= $toc ?>
+        </small>
+      </div>
     <?php endif; ?>
+    <div>
     <?php $pdf = $item->params->get('csc_pdf_preview'); if ($pdf) :
       ?>
         <!-- Button trigger modal -->
@@ -62,13 +80,21 @@
          </div>
         </div>
     <?php endif; ?>
+
+    <?php if ($notice) : ?>
+      <small class="float-right mt-3 ml-3">
+        Copyright &copy; <?= $notice ?>
+      </small>
+    <?php endif; ?>
+    </div>
   </div>
 </div>
 <hr>
-<div class="content">
+<div class="content" itemprop="description">
   <?= $item->text ?>
 </div>
 <?php if ($images->image_fulltext) : ?>
   <a href="<?= $images->image_fulltext ?>" data-toggle="lightbox" data-gallery="gallery" data-title="<?= $images->image_fulltext_alt ?>" data-footer="<?= $images->image_fulltext_caption ?>" >
   </a>
 <?php endif; ?>
+</div>
