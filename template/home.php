@@ -2,7 +2,6 @@
 
 function get_content_from_category($category, $fields = null, $limit = 0, $order = 'ordering') {
   $db = JFactory::getDbo();
-
   $query = $db->getQuery(true);
   $subQuery = $db->getQuery(true);
 
@@ -15,7 +14,7 @@ function get_content_from_category($category, $fields = null, $limit = 0, $order
          ->where($db->quoteName('catid') . ' IN (' . $subQuery . ')')
          ->andwhere( $db->quoteName('state') . ' = 1')
          ->order($order);
-
+         
   if (!empty($limit)) {
    $query ->setLimit($limit);
   }
@@ -87,6 +86,43 @@ function get_cat_link_with_alias($category_alias) {
   return get_cat_link(get_category_with_alias($category_alias, ['id', 'language']));
 }
 
+function get_recent_publications($limit = 0, $featured = false){
+  $db = JFactory::getDbo();
+  $query = $db->getQuery(true);
+  $subQuery = $db->getQuery(true);
+  $subQuery2 = $db->getQuery(true);
+  
+  $subQuery2 ->select('id')
+          	->from($db->quoteName('#__categories'))
+          	->where($db->quoteName('alias') . ' = ' . $db->quote('publication'));
+            
+  $subQuery ->select('id')
+            ->from($db->quoteName('#__categories'))
+            ->where($db->quoteName('parent_id') . ' IN (' . $subQuery2 .')')
+            ->orWhere($db->quoteName('id') . ' IN (' . $subQuery2 .')');
+            
+  $query ->select('cat.title as category_title, con.title as content_title, con.introtext, con.images, con.publish_up, con.id, con.catid, con.language')
+        	->from($db->quoteName('#__content').' AS con')
+        	->innerJoin('#__categories AS cat ON catid = cat.id')
+            ->where($db->quoteName('catid') . ' IN (' . $subQuery . ')')
+            ->andWhere( $db->quoteName('state') . ' = 1');
+  if($featured){
+      $query->andWhere($db->quoteName('featured').'='.$db->quote($featured));
+  }
+  if(!empty($where)){
+      $query->andWhere($where,$whereGlue);
+  }
+  
+  $query ->order('publish_up DESC');
+  if (!empty($limit)) {
+   $query ->setLimit($limit);
+  }
+  
+  $db->setQuery($query);
+  return $db->loadObjectList();
+}
+
+
   $base = JURI::base(true);
   $path = $base.'/templates/'.$app->getTemplate().'/';
 
@@ -97,6 +133,12 @@ function get_cat_link_with_alias($category_alias) {
   $quicks = get_content_from_category('page-quick', ['id', 'title', 'introtext', 'catid', 'fulltext', 'language', 'alias', 'attribs'], 3);
 
   $events = get_events(['id', 'title', 'introtext', 'catid', 'fulltext', 'language', 'publish_down'], 3);
+  
+  $recent_publications = get_recent_publications(7);
+  $featured_publications = get_recent_publications(7, true);
+  
+  //$publications = JCategories::getInstance('Content')->get(get_category_with_alias('publication','id')->id);
+  //echo "<pre>".print_r($recent_publications,true)."</pre>";
 ?>
 
 
@@ -179,7 +221,7 @@ function get_cat_link_with_alias($category_alias) {
   </div>
   <?php endif; ?>
   <div class="background-secondary">
-    <div class="container my-5 py-3">
+    <div class="container mt-5 py-3">
       <h3 class="mb-3">News &amp; Announcements</h3>
       <div class="row">
       <?php
@@ -209,6 +251,95 @@ function get_cat_link_with_alias($category_alias) {
       </div>
     </div>
   </div>
+  <div class="bg-primary">
+    <div class="container mb-5 py-3">
+        <div class="row justify-content-center align-items-start ">
+            <?php if (!empty($featured_publications)) :?>
+            <div class="col-12 col-md-5 ">
+                <h3 class="my-3 text-secondary text-center pb-2" style="border-style:solid; border-width:0 0 3px 0;">Featured Publications</h3>
+                <div class="row flex-nowrap noselect align-items-end disable-scrollbars" id="featuredScroll" style="overflow-x:auto;">
+                <?php foreach ($featured_publications as $p) : ?>
+                        <?php
+                            $images = json_decode($p->images,true);
+                        ?>
+                        <div class="col-6 col-sm-3 col-md-4 m-1 p-0 ">
+                            <div class="card bg-secondary h-100">
+                            <?php if ($images['image_intro']) :?>
+                                <img src="<?=$images['image_intro']?>" class="card-img-top img-fluid" alt="<?=$images['image_intro_alt']?>" draggable="false">
+                            <?php endif ?>
+                                <div class="card-body p-2">
+                                    <p class="card-text text-center mb-0"><?=$p->content_title?></p>
+                                    <a href="<?=get_art_link($p)?>" class="stretched-link" draggable="false"></a>
+                                </div>
+                            </div>
+                        </div>
+                <?php endforeach;?>
+                </div>
+            </div>
+            <div class="col-0 col-md-1 m-0"></div>
+            <?php endif; ?>
+            <div class="col-12 <?=!empty($featured_publications) ?  'col-md-5' : ''?> "  >
+                <h3 class="my-3 text-secondary text-center pb-2" style="border-style:solid; border-width:0 0 3px 0;">Recent Publications</h3>
+                <?php
+                if (!empty($recent_publications)) :?>
+                <div class="row flex-nowrap noselect align-items-end disable-scrollbars" id="recentScroll" style="overflow-x:auto;">
+                <?php foreach ($recent_publications as $p) : ?>
+                        <?php
+                            $images = json_decode($p->images,true);
+                        ?>
+                        <div class="<?=!empty($featured_publications) ? "col-6 col-sm-3 col-md-4":"col-4 col-md-2" ?> m-1 p-0 ">
+                            <div class="card bg-secondary h-100">
+                            <?php if ($images['image_intro']) :?>
+                                <img src="<?=$images['image_intro']?>" class="card-img-top img-fluid" alt="<?=$images['image_intro_alt']?>" draggable="false">
+                            <?php endif ?>
+                                <div class="card-body p-2">
+                                    <p class="card-text text-center mb-0"><?=$p->content_title?></p>
+                                    <a href="<?=get_art_link($p)?>" class="stretched-link" draggable="false"></a>
+                                </div>
+                            </div>
+                        </div>
+                <?php endforeach;?>
+                </div>
+                <?php else :?>
+                <pre class="text-white">There are no featured publications as of this time.</pre>
+                <?php endif; ?>
+            </div>
+        </div>
+        <div class="text-right mt-3">
+          <a class="link-boss text-white" href="<?= get_cat_link_with_alias('publication') ?>">
+            More
+            <i class="fas fa-caret-right">
+            </i>
+          </a>
+        </div>
+    </div>
+  </div>
+    <script>
+        $.fn.attachDragger = function(){
+            var attachment = false, lastPosition, position, difference;
+            $(this).on("mousedown mouseup mousemove",function(e){
+                if( e.type == "mousedown" ) attachment = true, lastPosition = [e.clientX, e.clientY];
+                if( e.type == "mouseup" ) attachment = false;
+                if( e.type == "mousemove" && attachment == true ){
+                    position = [e.clientX, e.clientY];
+                    difference = [ (position[0]-lastPosition[0]), (position[1]-lastPosition[1]) ];
+                    $(this).scrollLeft( $(this).scrollLeft() - difference[0] );
+                    $(this).scrollTop( $(this).scrollTop() - difference[1] );
+                    lastPosition = [e.clientX, e.clientY];
+                }
+            });
+            $(window).on("mouseup", function(){
+                attachment = false;
+            });
+        }
+        $(document).ready(function(){
+            $("#recentScroll").attachDragger();
+            $("#featuredScroll").attachDragger();
+        });
+    </script>
+  
+  
+  
   <div class="container mt-5">
     <div class="row mt-4">
       <div class="events col-12 col-md-4">
@@ -289,3 +420,5 @@ function get_cat_link_with_alias($category_alias) {
       </div>
   </div>
 </div>
+
+

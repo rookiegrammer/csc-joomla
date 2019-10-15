@@ -44,9 +44,7 @@ JFactory::getApplication()->set('blog_item_style', '');
 
 
 //style category based on its parent if no style exists for it
-$category = $this->category;
-
-$path = realpath(__DIR__).'/custom/'.preg_replace('/\/.+$/', '', $category->path).'.php';
+$path = realpath(__DIR__).'/custom/'.preg_replace('/\/.+$/', '', $this->category->path).'.php';
 
 if(!file_exists($path)){
     $path = realpath(__DIR__).'/custom/default.php';

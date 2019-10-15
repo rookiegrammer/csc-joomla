@@ -31,6 +31,26 @@
   <script src="<?= $path ?>js/bootstrap.min.js"></script>
   <script src="<?= $path ?>js/ekko-lightbox.min.js"></script>
   <script src="<?= $path ?>js/jquery.scrollTo.min.js"></script>
+  
+  <style>
+    .noselect {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none; 
+        -moz-user-select: none; 
+        -ms-user-select: none; 
+        user-select: none; 
+    }
+    .disable-scrollbars::-webkit-scrollbar {
+        width: 0px;
+        background: transparent; 
+    }
+
+    .disable-scrollbars {
+      scrollbar-width: none; 
+      -ms-overflow-style: none; 
+    }
+  </style>
 </head>
 <body>
   <header class="background-primary">
