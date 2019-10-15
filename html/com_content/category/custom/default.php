@@ -97,11 +97,11 @@
 	<?php if (($this->params->def('show_pagination', 1) == 1 || ($this->params->get('show_pagination') == 2)) && ($this->pagination->get('pages.total') > 1)) : ?>
         <div class="row align-items-center justify-content-center">
             <?php if ($this->params->def('show_pagination_results', 1)) : ?>
-                <div class="col-12 col-sm-3 text-center">
+                <div class="col-12 col-sm-3 text-center text-sm-right">
                     <p class="counter pull-right"> <?php echo $this->pagination->getPagesCounter(); ?> </p>
                 </div>
             <?php endif; ?>
-            <div class="col-12 col-sm-6 text-center"><?php echo $this->pagination->getPagesLinks(); ?> </div>
+            <div class="col-12 col-sm-5"><?php echo $this->pagination->getPagesLinks(); ?> </div>
         </div>
     <?php endif; ?>
 </div>
