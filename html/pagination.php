@@ -112,7 +112,7 @@ function pagination_list_render($list)
 	}
 
 	$html  = '<nav role="navigation" aria-label="' . JText::_('JLIB_HTML_PAGINATION') . '">';
-	$html .= '<ul class="pagination">';
+	$html .= '<ul class="pagination justify-content-center">';
 	$html .= $list['start']['data'];
 	$html .= $list['previous']['data'];
 
