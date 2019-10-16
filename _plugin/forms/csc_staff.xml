@@ -44,6 +44,12 @@
 				label="Position"
 				filter="STRING"
 			/>
+			<field
+				name="csc_email"
+				type="email"
+				label="Email"
+				validate="email"
+			/>
 		</fieldset>
 	</fields>
 </form>

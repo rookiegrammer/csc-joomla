@@ -6,6 +6,7 @@
   $price = $item->params->get('csc_publication_price');
   $isbn = $item->params->get('csc_publication_isbn');
   $notice = $item->params->get('csc_publication_notices');
+  $other = $item->params->get('csc_alt_titles');
 ?>
 <div itemscope="" itemtype="http://schema.org/Book">
 <div class="row">
@@ -18,9 +19,9 @@
 
   <?php endif; ?>
   <div class="col">
-    <div>
+    <div class="mb-2">
       <h1 class="title mb-2 d-inline-block" itemprop="name"><?= $item->title ?></h1>
-      <span class="price badge badge-secondary mt-2 ml-2 float-right" style="font-size: 1.2rem">
+      <span class="price badge badge-secondary mt-2 ml-2 float-right" style="font-size: 1.2rem" itemprop="price">
       <?php if ($price) : ?>
         <strong><?= $price ?></strong>
       <?php else : ?>
@@ -36,6 +37,11 @@
       </span>
     </div>
     <?php endif; ?>
+    <?php if ($other) : ?>
+      <div>
+        Other Titles: <?= $other ?>
+      </div>
+    <?php endif; ?>
     <div class="mb-2">
       <?php if ($item->created) : ?>
         Published
@@ -44,12 +50,12 @@
         </span>
       <?php endif; ?>
       <?php if ($isbn) : ?>
-         <span itemprop="isbn">ISBN <?= $isbn ?></span>
+         |  <span itemprop="isbn">ISBN <?= $isbn ?></span>
       <?php endif; ?>
     </div>
     <?php $toc = $item->params->get('csc_toc'); if ($toc) : ?>
-      <div>
-        <h2 class="h6 font-weight-bold">Table of Contents</h2>
+      <div itemprop="appendix">
+        <h2 class="h6 font-weight-bold">Contents</h2>
         <small class="appendix border-left border-primary font-italic d-block mb-4 pl-2">
           <?= $toc ?>
         </small>

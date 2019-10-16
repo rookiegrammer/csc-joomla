@@ -14,7 +14,7 @@ function get_content_from_category($category, $fields = null, $limit = 0, $order
          ->where($db->quoteName('catid') . ' IN (' . $subQuery . ')')
          ->andwhere( $db->quoteName('state') . ' = 1')
          ->order($order);
-         
+
   if (!empty($limit)) {
    $query ->setLimit($limit);
   }
@@ -37,8 +37,8 @@ function get_events($fields = null, $limit = 0) {
          ->from($db->quoteName('#__content'))
          ->where($db->quoteName('catid') . ' IN (' . $subQuery . ')')
          ->andwhere( $db->quoteName('state') . ' = 1')
-         ->andwhere( $db->quoteName('publish_down') . ' > "'.date("Y-m-d").'"')
-         ->order('publish_down ASC');
+         ->andwhere( $db->quoteName('created') . ' > "'.date("Y-m-d").'"')
+         ->order('created ASC');
 
   if (!empty($limit)) {
    $query ->setLimit($limit);
@@ -91,16 +91,16 @@ function get_recent_publications($limit = 0, $featured = false){
   $query = $db->getQuery(true);
   $subQuery = $db->getQuery(true);
   $subQuery2 = $db->getQuery(true);
-  
+
   $subQuery2 ->select('id')
           	->from($db->quoteName('#__categories'))
           	->where($db->quoteName('alias') . ' = ' . $db->quote('publication'));
-            
+
   $subQuery ->select('id')
             ->from($db->quoteName('#__categories'))
             ->where($db->quoteName('parent_id') . ' IN (' . $subQuery2 .')')
             ->orWhere($db->quoteName('id') . ' IN (' . $subQuery2 .')');
-            
+
   $query ->select('cat.title as category_title, con.title as content_title, con.introtext, con.images, con.publish_up, con.id, con.catid, con.language')
         	->from($db->quoteName('#__content').' AS con')
         	->innerJoin('#__categories AS cat ON catid = cat.id')
@@ -112,12 +112,12 @@ function get_recent_publications($limit = 0, $featured = false){
   if(!empty($where)){
       $query->andWhere($where,$whereGlue);
   }
-  
+
   $query ->order('publish_up DESC');
   if (!empty($limit)) {
    $query ->setLimit($limit);
   }
-  
+
   $db->setQuery($query);
   return $db->loadObjectList();
 }
@@ -132,11 +132,11 @@ function get_recent_publications($limit = 0, $featured = false){
   $news = get_content_from_category('news', ['id', 'title', 'introtext', 'catid', 'fulltext', 'language', 'images'], 12);
   $quicks = get_content_from_category('page-quick', ['id', 'title', 'introtext', 'catid', 'fulltext', 'language', 'alias', 'attribs'], 3);
 
-  $events = get_events(['id', 'title', 'introtext', 'catid', 'fulltext', 'language', 'publish_down'], 3);
-  
+  $events = get_events(['id', 'title', 'introtext', 'catid', 'fulltext', 'language', 'created'], 3);
+
   $recent_publications = get_recent_publications(7);
   $featured_publications = get_recent_publications(7, true);
-  
+
   //$publications = JCategories::getInstance('Content')->get(get_category_with_alias('publication','id')->id);
   //echo "<pre>".print_r($recent_publications,true)."</pre>";
 ?>
@@ -345,9 +345,9 @@ function get_recent_publications($limit = 0, $featured = false){
             });
         });
     </script>
-  
-  
-  
+
+
+
   <div class="container mt-5">
     <div class="row mt-4">
       <div class="events col-12 col-md-4">
@@ -361,7 +361,7 @@ function get_recent_publications($limit = 0, $featured = false){
             <?php
               $e_first = true;
               foreach ($events as $event) :
-                $date = strtotime($event->publish_down);
+                $date = strtotime($event->created);
               ?>
             <a class="row csc-date-event" href="<?= get_art_link($event) ?>">
               <div class="csc-date-prewrap position-relative">
@@ -428,5 +428,3 @@ function get_recent_publications($limit = 0, $featured = false){
       </div>
   </div>
 </div>
-
-

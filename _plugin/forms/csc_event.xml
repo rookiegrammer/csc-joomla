@@ -14,13 +14,23 @@
 				type="text"
 				label="Date"
 				readonly="true"
-				default="- Finish Publishing (Publishing) -"
+				default="- Created Date (Publishing) -"
 				description="Event date based on Finish Publishing Date."
 			/>
+			<field
+				name="csc_date_finish"
+				type="calendar"
+				label="Finish Date"
+				format="%Y-%m-%d %H:%M"
+				showtime="true"
+				description="Time event will be finished"
+			/>
       <field
-        name="csc_image"
-        type="media"
-        label="Event Image"
+				name=""
+				type="text"
+				label="Event Image"
+				readonly="true"
+				default="- Intro Image (Images and Links) -"
         description="Cover Image of Event."/>
 		</fieldset>
 	</fields>

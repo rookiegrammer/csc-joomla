@@ -14,8 +14,8 @@
                   ?>
 <div class="row mb-4 align-items-center">
   <a class="col-12 col-md-auto" href="<?= $link ?>">
-    <div class="image-circle">
-      <img src="<?= $attribs->csc_profile ?>" alt="profile image">
+    <div class="image-circle<?= $thumb ? '' : ' invisible' ?>">
+      <img <?= $thumb ? 'src="'.$thumb.'"' : ''  ?> alt="profile image">
     </div>
   </a>
   <div class="col-12 col-md-8">

@@ -1,7 +1,7 @@
-<?php $date = strtotime($this->item->publish_down);
+<?php $date = strtotime($this->item->created);
       $link = JRoute::_(ContentHelperRoute::getArticleRoute($this->item->id,
                   $this->item->catid, $this->item->language));
-      $indefinite = $this->item->publish_down == '0000-00-00 00:00:00';
+      $indefinite = $this->item->created == '0000-00-00 00:00:00';
                   ?>
 <div class="row mb-4">
   <a class="col-12 col-md-auto" href="<?= $link ?>">
@@ -15,7 +15,7 @@
         </div>
       </div>
     </div>
-    <div class="d-block d-md-none" itemprop="startDate" content="<?= (new DateTime($this->item->publish_down))->format('c') ?>">
+    <div class="d-block d-md-none" itemprop="startDate" content="<?= (new DateTime($this->item->created))->format('c') ?>">
       <?= $indefinite ? 'Indefinite' : date('F j, Y', $date) ?>
     </div>
   </a>

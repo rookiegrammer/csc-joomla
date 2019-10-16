@@ -55,6 +55,7 @@
         name="csc_toc"
         type="editor"
         label="Table of Contents"
+				filter="safehtml"
         description="Write Table of Contents here."/>
 		</fieldset>
 	</fields>

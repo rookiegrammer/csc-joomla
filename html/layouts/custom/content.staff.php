@@ -9,19 +9,30 @@
   $l_name = $item->title;
   $name_suff = $item->params->get('csc_name_suffix');
 
+  $email = $item->params->get('csc_email');
+
   $name = $title.' '.$f_name.' '.$s_name.' '.$l_name.($name_suff ? ', '.$name_suff : '');
   $thumb = $item->params->get('csc_profile');
 ?>
   <div class="text-center">
+    <?php if ($thumb) : ?>
     <a class="d-inline-block" style="overflow: hidden; width: 100px; height: 100px; border-radius: 50px;" href="<?= $thumb ?>" data-toggle="lightbox" data-gallery="gallery" data-title="<?= $name ?>">
       <img class="w-100" src="<?= $thumb ?>" alt="profile image">
     </a>
+    <?php endif; ?>
     <h1 class="title sans-serif font-weight-bold mt-4">
       <?= $name ?>
     </h1>
-    <span class="staff-position h5 font-italic">
-      <?= $item->params->get('csc_position') ?>
+    <div>
+      <span class="staff-position h5 font-italic">
+        <?= $item->params->get('csc_position') ?>
+      </span>
+    </div>
+    <?php if ($email) : ?>
+    <span class="links">
+      <a href="mailto:<?= $email ?>"><?= $email ?></a>
     </span>
+    <?php endif; ?>
   </div>
 
   <hr>
