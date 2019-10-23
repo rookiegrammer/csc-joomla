@@ -152,28 +152,28 @@ function pagination_item_active(&$item)
 	// Check for "Start" item
 	if ($item->text === JText::_('JLIB_HTML_START'))
 	{
-		$display = '<i class="fas fa-fast-backward" aria-hidden="true"></i><span class="sr-only">(first)</span>';
+		$display = '<i class="fas fa-angle-double-left" aria-hidden="true"></i><span class="sr-only">(first)</span>';
 		$aria    = JText::sprintf('JLIB_HTML_GOTO_POSITION', strtolower($item->text));
 	}
 
 	// Check for "Prev" item
 	if ($item->text === JText::_('JPREV'))
 	{
-		$display = '<i class="fas fa-backward" aria-hidden="true"></i><span class="sr-only">(previous)</span>';
+		$display = '<i class="fas fa-angle-left" aria-hidden="true"></i><span class="sr-only">(previous)</span>';
 		$aria    = JText::sprintf('JLIB_HTML_GOTO_POSITION', strtolower($item->text));
 	}
 
 	// Check for "Next" item
 	if ($item->text === JText::_('JNEXT'))
 	{
-		$display = '<i class="fas fa-forward" aria-hidden="true"></i><span class="sr-only">(next)</span>';
+		$display = '<i class="fas fa-angle-right" aria-hidden="true"></i><span class="sr-only">(next)</span>';
 		$aria    = JText::sprintf('JLIB_HTML_GOTO_POSITION', strtolower($item->text));
 	}
 
 	// Check for "End" item
 	if ($item->text === JText::_('JLIB_HTML_END'))
 	{
-		$display = '<i class="fas fa-fast-forward" aria-hidden="true"></i><span class="sr-only">(last)</span>';
+		$display = '<i class="fas fa-angle-double-right" aria-hidden="true"></i><span class="sr-only">(last)</span>';
 		$aria    = JText::sprintf('JLIB_HTML_GOTO_POSITION', strtolower($item->text));
 	}
 
@@ -203,25 +203,25 @@ function pagination_item_inactive(&$item)
 	// Check for "Start" item
 	if ($item->text === JText::_('JLIB_HTML_START'))
 	{
-		return '<li class="page-item disabled"><a class="page-link" href="#" tabindex="-1"><i class="fas fa-fast-backward" aria-hidden="true"></i><span class="sr-only">(first)</span></a></li>';
+		return '<li class="page-item disabled"><a class="page-link" href="#" tabindex="-1"><i class="fas fa-angle-double-left" aria-hidden="true"></i><span class="sr-only">(first)</span></a></li>';
 	}
 
 	// Check for "Prev" item
 	if ($item->text === JText::_('JPREV'))
 	{
-		return '<li class="page-item disabled"><a class="page-link" href="#" tabindex="-1"><i class="fas fa-backward" aria-hidden="true"></i><span class="sr-only">(previous)</span></a></li>';
+		return '<li class="page-item disabled"><a class="page-link" href="#" tabindex="-1"><i class="fas fa-angle-left" aria-hidden="true"></i><span class="sr-only">(previous)</span></a></li>';
 	}
 
 	// Check for "Next" item
 	if ($item->text === JText::_('JNEXT'))
 	{
-		return '<li class="page-item disabled"><a class="page-link" href="#" tabindex="-1"><i class="fas fa-forward" aria-hidden="true"></i><span class="sr-only">(next)</span></a></li>';
+		return '<li class="page-item disabled"><a class="page-link" href="#" tabindex="-1"><i class="fas fa-angle-right" aria-hidden="true"></i><span class="sr-only">(next)</span></a></li>';
 	}
 
 	// Check for "End" item
 	if ($item->text === JText::_('JLIB_HTML_END'))
 	{
-		return '<li class="page-item disabled"><a class="page-link" href="#" tabindex="-1"><i class="fas fa-fast-forward" aria-hidden="true"></i><span class="sr-only">(last)</span></a></li>';
+		return '<li class="page-item disabled"><a class="page-link" href="#" tabindex="-1"><i class="fas fa-angle-double-right" aria-hidden="true"></i><span class="sr-only">(last)</span></a></li>';
 	}
 
 	// Check if the item is the active page

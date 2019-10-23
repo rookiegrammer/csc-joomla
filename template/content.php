@@ -1,6 +1,6 @@
 <div class="container py-5">
   <div class="row">
-    <div class="col">
+    <div class="col-12 col-md-8">
       <jdoc:include type="component" />
     </div>
     <?php

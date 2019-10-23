@@ -257,7 +257,7 @@ function get_recent_publications($limit = 0, $featured = false){
             <?php if (!empty($featured_publications)) :?>
             <div class="col-12 col-md-5 ">
                 <h3 class="my-3 text-secondary text-center pb-2" style="border-style:solid; border-width:0 0 3px 0;">Featured Publications</h3>
-                <div class="row flex-nowrap noselect align-items-end disable-scrollbars" id="featuredScroll" style="overflow-x:auto;">
+                <div class="row flex-nowrap noselect align-items-start disable-scrollbars" id="featuredScroll" style="overflow-x:auto;">
                 <?php foreach ($featured_publications as $p) : ?>
                         <?php
                             $images = json_decode($p->images,true);
@@ -282,7 +282,7 @@ function get_recent_publications($limit = 0, $featured = false){
                 <h3 class="my-3 text-secondary text-center pb-2" style="border-style:solid; border-width:0 0 3px 0;">Recent Publications</h3>
                 <?php
                 if (!empty($recent_publications)) :?>
-                <div class="row flex-nowrap noselect align-items-end disable-scrollbars" id="recentScroll" style="overflow-x:auto;">
+                <div class="row flex-nowrap noselect align-items-start disable-scrollbars" id="recentScroll" style="overflow-x:auto;">
                 <?php foreach ($recent_publications as $p) : ?>
                         <?php
                             $images = json_decode($p->images,true);
