@@ -160,8 +160,9 @@ function get_recent_publications($limit = 0, $featured = false){
         ?>
 
       <div class="carousel-item<?= $sliders_begin ? ' active' : '' ?>">
-        <a href="<?= get_art_link($update) ?>">
-          <img class="d-block h-100 m-auto" src="<?= $images->image_intro ?>" alt="<?= $images->image_intro_alt ?>">
+        <div class="carousel-underlay" style="background-image: url(<?= $images->image_intro ?>)"></div>
+        <a class="carousel-overlay" href="<?= get_art_link($update) ?>">
+          <img class="d-block h-100 m-auto" src="<?= $images->image_intro ?>" alt="<?= $images->image_intro_alt ?>" draggable="false">
           <div class="carousel-text-block">
             <div class="carousel-text-wrap">
               <div class="carousel-text-overlay">
@@ -208,7 +209,7 @@ function get_recent_publications($limit = 0, $featured = false){
     <div class="row my-4">
       <?php
       foreach ($quicks as $quicklink) : ?>
-        <div class="col-4">
+        <div class="col-12 col-md-4 mb-4">
           <a class="d-block w-auto text-center p-3 btn btn-primary btn-round-border btn-primary-accent btn-hovershadow" href="<?= get_art_link($quicklink) ?>">
             <i class="fa fa-<?= json_decode($quicklink->attribs)->csc_fa_icon_class ?> d-block mb-2" style="font-size: 2rem"></i>
             <?= $quicklink->title ?>
@@ -227,7 +228,7 @@ function get_recent_publications($limit = 0, $featured = false){
       <?php
       if (!empty($news)) :
       foreach ($news as $news_each) : ?>
-        <div class="col-3">
+        <div class="col-12 col-md-6 col-lg-3 mb-4">
           <a class="btn btn-feature" href="<?= get_art_link($news_each) ?>" style="background-image: url(<?= json_decode($news_each->images)->image_intro ?>)">
             <span class="gradient-overlay"></span>
             <h5 class="gradient-title m-0 text-white p-2 font-weight-bold">
@@ -256,22 +257,23 @@ function get_recent_publications($limit = 0, $featured = false){
         <div class="row justify-content-center align-items-start ">
             <?php if (!empty($featured_publications)) :?>
             <div class="col-12 col-md-5 ">
-                <h3 class="my-3 text-secondary text-center pb-2" style="border-style:solid; border-width:0 0 3px 0;">Featured Publications</h3>
-                <div class="row flex-nowrap noselect align-items-start disable-scrollbars" id="featuredScroll" style="overflow-x:auto;">
+                <h3 class="my-3 h2 text-center pb-2" style="border-style:solid; border-width:0 0 3px 0; color: #fff">Featured Publications</h3>
+                <div class="row flex-nowrap noselect align-items-start vertical-bar" id="featuredScroll" style="overflow-x:auto;">
                 <?php foreach ($featured_publications as $p) : ?>
                         <?php
                             $images = json_decode($p->images,true);
                         ?>
-                        <div class="col-6 col-sm-3 col-md-4 m-1 p-0 ">
-                            <div class="card bg-secondary h-100">
+                        <div class="col-12 col-md-3 col-lg-2 px-1 pb-3 m-0">
+                            <a href="<?=get_art_link($p)?>" class="card bg-white h-100">
                             <?php if ($images['image_intro']) :?>
+                              <div class="event-img-box">
                                 <img src="<?=$images['image_intro']?>" class="card-img-top img-fluid" alt="<?=$images['image_intro_alt']?>" draggable="false">
+                              </div>
                             <?php endif ?>
                                 <div class="card-body p-2">
-                                    <p class="card-text text-center mb-0"><?=$p->content_title?></p>
-                                    <a href="<?=get_art_link($p)?>" class="stretched-link" draggable="false"></a>
+                                    <h5 class="card-text text-center h6 mb-0" style="font-weight: 700"><?=$p->content_title?></h5>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                 <?php endforeach;?>
                 </div>
@@ -279,24 +281,25 @@ function get_recent_publications($limit = 0, $featured = false){
             <div class="col-0 col-md-1 m-0"></div>
             <?php endif; ?>
             <div class="col-12 <?=!empty($featured_publications) ?  'col-md-5' : ''?> "  >
-                <h3 class="my-3 text-secondary text-center pb-2" style="border-style:solid; border-width:0 0 3px 0;">Recent Publications</h3>
+                <h3 class="my-3 h2 text-center pb-2" style="border-style:solid; border-width:0 0 3px 0; color: #fff">Recent Publications</h3>
                 <?php
                 if (!empty($recent_publications)) :?>
-                <div class="row flex-nowrap noselect align-items-start disable-scrollbars" id="recentScroll" style="overflow-x:auto;">
+                <div class="row flex-nowrap noselect align-items-start vertical-bar" id="recentScroll" style="overflow-x:auto;">
                 <?php foreach ($recent_publications as $p) : ?>
                         <?php
                             $images = json_decode($p->images,true);
                         ?>
-                        <div class="<?=!empty($featured_publications) ? "col-6 col-sm-3 col-md-4":"col-4 col-md-2" ?> m-1 p-0 ">
-                            <div class="card bg-secondary h-100">
+                        <div class="<?=!empty($featured_publications) ? "col-12 col-md-2 col-lg-2":"col-12 col-md-3 col-lg-2" ?> px-1 pb-3 m-0 ">
+                            <a href="<?=get_art_link($p)?>" class="card bg-white h-100">
                             <?php if ($images['image_intro']) :?>
+                              <div class="event-img-box">
                                 <img src="<?=$images['image_intro']?>" class="card-img-top img-fluid" alt="<?=$images['image_intro_alt']?>" draggable="false">
+                              </div>
                             <?php endif ?>
                                 <div class="card-body p-2">
-                                    <p class="card-text text-center mb-0"><?=$p->content_title?></p>
-                                    <a href="<?=get_art_link($p)?>" class="stretched-link" draggable="false"></a>
+                                    <h5 class="card-text text-center h6 mb-0" style="font-weight: 700"><?=$p->content_title?></h5>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                 <?php endforeach;?>
                 </div>
@@ -416,9 +419,13 @@ function get_recent_publications($limit = 0, $featured = false){
     </div>
   </div>
 </div>
-<div class="my-5">
-  <div id="about" class="mb-4" style="background-image: url(<?= $path ?>img/image1.jpg); background-size: cover; background-position: center;">
-      <div style="background-color: rgba(255,255,255,0.6); color: black; text-shadow: 0 0 10px #ffffff;">
+<div id="about" class="my-5 position-relative">
+  <div style="position: absolute; width:100%; height: 100%; z-index:-1; background-color: #444">
+    <div style="background-image: url(<?= $path ?>img/image1.jpg); background-size: cover; background-position: center; filter: blur(5px); height: 100%; opacity: 0.7">
+    </div>
+  </div>
+  <div class="mb-4">
+      <div style="color: white; text-shadow: 0 0 10px #000;">
         <div class="container py-5">
           <h3 class="text-primary pb-3" style="color: inherit !important; font-size: 1.5rem">
             About the <?= $this->params->get('sitetitle') ?>

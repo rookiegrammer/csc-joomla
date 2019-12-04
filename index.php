@@ -27,11 +27,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css">
   <link href="<?= $path ?>css/bootstrap.min.css" rel="stylesheet">
 
-  <script src="<?= $path ?>js/jquery-3.3.1.min.js"></script>
-  <script src="<?= $path ?>js/popper.min.js"></script>
-  <script src="<?= $path ?>js/bootstrap.min.js"></script>
-  <script src="<?= $path ?>js/ekko-lightbox.min.js"></script>
-  <script src="<?= $path ?>js/jquery.scrollTo.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/popper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.2/jquery.scrollTo.min.js"></script>
 
   <style>
     .noselect {
@@ -42,14 +42,20 @@
         -ms-user-select: none;
         user-select: none;
     }
-    .disable-scrollbars::-webkit-scrollbar {
-        width: 0px;
-        background: transparent;
+    .vertical-bar::-webkit-scrollbar {
+      width: 11px;
     }
-
-    .disable-scrollbars {
-      scrollbar-width: none;
-      -ms-overflow-style: none;
+    .vertical-bar {
+      scrollbar-width: thin;
+      scrollbar-color: #fff #470000;
+    }
+    .vertical-bar::-webkit-scrollbar-track {
+      background: #470000;
+    }
+    .vertical-bar::-webkit-scrollbar-thumb {
+      background-color: #fff;
+      border-radius: 6px;
+      border: 3px solid black;
     }
   </style>
 </head>
