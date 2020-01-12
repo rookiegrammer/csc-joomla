@@ -50,6 +50,11 @@
 				label="Email"
 				validate="email"
 			/>
+			<field
+				name="order_priority"
+				type="number"
+				label="Priority"
+			/>
 		</fieldset>
 	</fields>
 </form>

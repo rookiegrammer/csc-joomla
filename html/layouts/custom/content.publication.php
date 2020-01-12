@@ -21,13 +21,11 @@
   <div class="col">
     <div class="mb-2">
       <h1 class="title mb-2 d-inline-block" itemprop="name"><?= $item->title ?></h1>
-      <span class="price badge badge-secondary mt-2 ml-2 float-right" style="font-size: 1.2rem" itemprop="price">
       <?php if ($price) : ?>
-        <strong><?= $price ?></strong>
-      <?php else : ?>
-        FREE
+        <span class="price badge badge-secondary mt-2 ml-2 float-right" style="font-size: 1.2rem" itemprop="price">
+          <strong><?= $price ?></strong>
+        </span>
       <?php endif; ?>
-      </span>
     </div>
     <?php $author = $item->params->get('csc_publication_author'); if ($author) : ?>
     <div class="font-weight-bold mb-4">
@@ -50,7 +48,7 @@
         </span>
       <?php endif; ?>
       <?php if ($isbn) : ?>
-         |  <span itemprop="isbn">ISBN <?= $isbn ?></span>
+         |  <span itemprop="isbn">ISBN/ISSN <?= $isbn ?></span>
       <?php endif; ?>
     </div>
     <?php $toc = $item->params->get('csc_toc'); if ($toc) : ?>

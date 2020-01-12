@@ -134,8 +134,8 @@ function get_recent_publications($limit = 0, $featured = false){
 
   $events = get_events(['id', 'title', 'introtext', 'catid', 'fulltext', 'language', 'created'], 3);
 
-  $recent_publications = get_recent_publications(7);
-  $featured_publications = get_recent_publications(7, true);
+  $recent_publications = get_recent_publications($this->params->get('maxrecentpubs'));
+  $featured_publications = get_recent_publications($this->params->get('maxfeaturedpubs'), true);
 
   //$publications = JCategories::getInstance('Content')->get(get_category_with_alias('publication','id')->id);
   //echo "<pre>".print_r($recent_publications,true)."</pre>";
@@ -194,14 +194,17 @@ function get_recent_publications($limit = 0, $featured = false){
   </a>
 </div>
 <?php endif; ?>
-<div class="container mt-5 text-center">
-  <h3 class="text-primary mb-4" style="font-size: 1.8rem">
+<div class="container mt-3 mt-sm-5 text-center">
+  <h3 class="text-primary d-sm-none" style="font-size: 1.1rem">
+    <?= $this->params->get('mission') ?>
+  </h3>
+  <h3 class="text-primary d-none d-sm-block" style="font-size: 1.8rem">
     <?= $this->params->get('mission') ?>
   </h3>
   <a href="#about"><span class="hoverline">Learn More</span><br><span class="h3"><i class="fas fa-chevron-down"></i></span></a>
 </div>
 
-<div class="py-5">
+<div class="pb-5">
   <?php
   if (!empty($quicks)) : ?>
   <div class="container">
@@ -263,7 +266,7 @@ function get_recent_publications($limit = 0, $featured = false){
                         <?php
                             $images = json_decode($p->images,true);
                         ?>
-                        <div class="col-12 col-md-3 col-lg-2 px-1 pb-3 m-0">
+                        <div class="col-12 col-sm-6 col-md-3 col-lg-2 px-3 px-sm-1 pb-3 m-0">
                             <a href="<?=get_art_link($p)?>" class="card bg-white h-100">
                             <?php if ($images['image_intro']) :?>
                               <div class="event-img-box">
@@ -289,7 +292,7 @@ function get_recent_publications($limit = 0, $featured = false){
                         <?php
                             $images = json_decode($p->images,true);
                         ?>
-                        <div class="<?=!empty($featured_publications) ? "col-12 col-md-2 col-lg-2":"col-12 col-md-3 col-lg-2" ?> px-1 pb-3 m-0 ">
+                        <div class="<?=!empty($featured_publications) ? "col-12 col-sm-6 col-md-2 col-lg-2":"col-12 col-sm-6 col-md-3 col-lg-2" ?> px-3 px-sm-1 pb-3 m-0 ">
                             <a href="<?=get_art_link($p)?>" class="card bg-white h-100">
                             <?php if ($images['image_intro']) :?>
                               <div class="event-img-box">

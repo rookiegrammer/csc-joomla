@@ -11,6 +11,7 @@
           <?php if (!$indefinite) : ?>
             <div class="csc-date-day"><?= date('d', $date) ?></div>
             <div class="csc-date-month"><?= date('M', $date) ?></div>
+            <div class="csc-date-month"><?= date('Y', $date) ?></div>
           <?php endif ?>
         </div>
       </div>

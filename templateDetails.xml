@@ -86,6 +86,24 @@
 					description=""
 					default="0"
 				/>
+                
+                <field
+					name="maxrecentpubs"
+					type="string"
+					label="Max Home Page Recent Publications"
+					description="Maximum recent publications to be displayed in home page."
+					default="10"
+                    filter="UINT"
+				/>
+                
+                <field
+					name="maxfeaturedpubs"
+					type="string"
+					label="Max Home Page Featured Publications"
+					description="Maximum featured publications to be displayed in home page."
+					default="10"
+                    filter="UINT"
+				/>
 			</fieldset>
 		</fields>
 	</config>

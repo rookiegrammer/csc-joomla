@@ -7,7 +7,6 @@ $link = JRoute::_(ContentHelperRoute::getArticleRoute($this->item->id,
 $attribs = json_decode($this->item->attribs);
                   ?>
 <div class="row mb-4">
-  
   <div class="col-12 col-md-8">
     <div itemprop="startDate" content="<?= (new DateTime($this->item->publish_down))->format('c') ?>">
       <?= $this->item->publish_up == '0000-00-00 00:00:00' ? '' : date('F d, Y', $date) ?>
@@ -15,12 +14,10 @@ $attribs = json_decode($this->item->attribs);
     <h2 class="font-weight-bold"><a href="<?= $link ?>" itemprop="name"><?= $this->item->title ?></a></h2>
     <div>
       <?php if ($attribs->csc_publication_price) : ?>
-        <strong><?= $attribs->csc_publication_price ?></strong>
-      <?php else : ?>
-        FREE
+        <strong><?= $attribs->csc_publication_price ?></strong> | 
       <?php endif; ?>
       <?php if ($attribs->csc_publication_isbn) : ?>
-         | <span>ISBN <?= $attribs->csc_publication_isbn ?></span>
+        <span>ISBN/ISSN <?= $attribs->csc_publication_isbn ?></span>
       <?php endif; ?>
     </div>
     <p><?= $this->item->introtext ?></p>

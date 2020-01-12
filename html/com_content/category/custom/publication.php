@@ -9,6 +9,37 @@
 <?php endif; ?>
 <hr/>
 
+
+
+<?php if ($this->category->parent_id!='root' && empty($this->lead_items) && empty($this->link_items) && empty($this->intro_items)) : ?>
+    <?php if ($this->params->get('show_no_articles', 1)) : ?>
+        <p><?php echo JText::_('COM_CONTENT_NO_ARTICLES'); ?></p>
+    <?php endif; ?>
+<?php endif; ?>
+
+<?php
+  $layout->csc_item_schema = 'PublicationIssue';
+  $layout->list = &$this->lead_items;
+  include csc_display('list', 'publication-featured');
+  ?>
+
+<?php
+  $layout->list = &$this->intro_items;
+  include csc_display('grid', 'publication-grid'); ?>
+
+<?php if (($this->params->def('show_pagination', 1) == 1 || ($this->params->get('show_pagination') == 2)) && ($this->pagination->get('pages.total') > 1)) : ?>
+    <div class="row align-items-center justify-content-center">
+        <?php if ($this->params->def('show_pagination_results', 1)) : ?>
+            <div class="col-12 col-sm-3 text-center text-sm-right">
+                <p class="counter pull-right"> <?php echo $this->pagination->getPagesCounter(); ?> </p>
+            </div>
+        <?php endif; ?>
+        <div class="col-12 col-sm-5"><?php echo $this->pagination->getPagesLinks(); ?> </div>
+    </div>
+<?php endif; ?>
+    
+<hr/>
+    
 <?php
     $withImage = array();
     $withoutImage = array();
@@ -65,33 +96,7 @@ jQuery(document).ready(function ($) {
 });
 
 </script>
-
-<?php if ($this->category->parent_id!='root' && empty($this->lead_items) && empty($this->link_items) && empty($this->intro_items)) : ?>
-    <?php if ($this->params->get('show_no_articles', 1)) : ?>
-        <p><?php echo JText::_('COM_CONTENT_NO_ARTICLES'); ?></p>
-    <?php endif; ?>
-<?php endif; ?>
-
-<?php
-  $layout->csc_item_schema = 'PublicationIssue';
-  $layout->list = &$this->intro_items;
-  include csc_display('list', 'publication-featured');
-  ?>
-
-<?php
-  $layout->list = &$this->lead_items;
-  include csc_display('grid', 'publication-grid'); ?>
-
  
-<?php if (($this->params->def('show_pagination', 1) == 1 || ($this->params->get('show_pagination') == 2)) && ($this->pagination->get('pages.total') > 1)) : ?>
-    <div class="row align-items-center justify-content-center">
-        <?php if ($this->params->def('show_pagination_results', 1)) : ?>
-            <div class="col-12 col-sm-3 text-center text-sm-right">
-                <p class="counter pull-right"> <?php echo $this->pagination->getPagesCounter(); ?> </p>
-            </div>
-        <?php endif; ?>
-        <div class="col-12 col-sm-5"><?php echo $this->pagination->getPagesLinks(); ?> </div>
-    </div>
-<?php endif; ?>
+
 
 </div>

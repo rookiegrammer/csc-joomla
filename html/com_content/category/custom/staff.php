@@ -15,13 +15,23 @@
 <hr>
 
 <?php
+  function cmp($a, $b) {
+    $priority1 = property_exists($a, 'attribs') && property_exists($a->attribs, 'order_priority') ? json_decode($a->attribs)->order_priority : 0;
+    $priority2 = property_exists($b, 'attribs') && property_exists($b->attribs, 'order_priority') ? json_decode($b->attribs)->order_priority : 0;
+    return $priority1 > $priority2;
 
-  $layout->list = $this->lead_items;
+  }
+
+  $list = $this->lead_items;
+  usort($list, 'cmp');
+  $layout->list = $list;
   $layout->csc_item_schema = 'Person';
   include csc_display('list', 'profile'); ?>
 
 <?php
-  $layout->list = $this->intro_items;
+  $list = $this->intro_items;
+  usort($list, 'cmp');
+  $layout->list = $list;
   $layout->csc_item_schema = 'Person';
   include csc_display('list', 'profile'); ?>
 
